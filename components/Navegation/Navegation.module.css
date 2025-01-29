@@ -1,0 +1,21 @@
+.nav {
+  transition: all 0.3s ease-in-out;
+  background: var(--mantine-color-gray-1);
+  height: 100vh;
+  padding: var(--mantine-spacing-xl) 0;
+}
+
+.navlink {
+  background: transparent;
+  font-weight: 500;
+  opacity: 0.5;
+
+  &:hover {
+    background-color: transparent;
+  }
+
+  &[aria-current='true'] {
+    opacity: 1;
+    border-right: 2px solid var(--mantine-primary-color-5);
+  }
+}
