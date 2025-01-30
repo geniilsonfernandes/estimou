@@ -12,15 +12,20 @@ const buttonVariants = cva(
         outline: 'border-gray-300 text-gray-900 hover:bg-gray-100',
         transparent: 'bg-transparent text-gray-500 hover:bg-gray-100',
       },
+      hiddenLabel: {
+        true: 'justify-center lg:justify-start',
+        false: '',
+      },
       size: {
-        sm: 'px-3 py-1 text-xs',
-        md: 'px-4 py-2 text-sm',
-        lg: 'px-6 py-3 text-base',
+        sm: 'py-1 text-xs',
+        md: 'py-2 text-sm',
+        lg: 'py-3 text-base',
       },
     },
     defaultVariants: {
       variant: 'primary',
       size: 'md',
+      hiddenLabel: true,
     },
   }
 )
@@ -32,11 +37,15 @@ interface ButtonProps
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ children, leftSection, variant, size, className, ...props }, ref) => {
+  ({ children, leftSection, variant, size, className, hiddenLabel = true, ...props }, ref) => {
     return (
-      <button ref={ref} className={cn(buttonVariants({ variant, size }), className)} {...props}>
+      <button
+        ref={ref}
+        className={cn(buttonVariants({ variant, size, hiddenLabel }), className)}
+        {...props}
+      >
         {leftSection && <span>{leftSection}</span>}
-        {children}
+        <span className={cn({ 'hidden lg:block': hiddenLabel })}>{children}</span>
       </button>
     )
   }
