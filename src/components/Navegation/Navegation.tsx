@@ -1,70 +1,76 @@
 "use client";
 
-import {
-  IconBrandAlipay,
-  IconBriefcase,
-  IconLogout,
-  IconProps,
-  IconSmartHome,
-  IconUsers,
-} from "@tabler/icons-react";
-import Link from "next/link";
+import { cn } from '@/lib/cn'
+import { IconBriefcase, IconLogout, IconProps, IconSmartHome, IconUsers } from '@tabler/icons-react'
 import { usePathname } from "next/navigation";
 
+
+import { MenuLink } from '@/components//MenuLink'
+import { Button } from '@/components/Button'
+import { Logo } from '../Logo'
+
+
+
 export const Navegation = () => {
-  // const match = useMediaQuery("(min-width: 1200px)");
-  const pathname = usePathname();
+  const pathname = usePathname()
 
   const iconsProps = {
-    size: 20,
+    size: 22,
     stroke: 1,
     strokeWidth: 1.5,
-  } as IconProps;
+  } as IconProps
 
   const menus = [
     {
-      label: "Home",
-      path: "/",
+      label: 'Home',
+      path: '/',
       icon: <IconSmartHome {...iconsProps} />,
     },
     {
-      label: "clientes",
-      path: "/clients",
+      label: 'clientes',
+      path: '/clients',
       icon: <IconUsers {...iconsProps} />,
     },
     {
-      label: "serviços",
-      path: "/services",
+      label: 'serviços',
+      path: '/services',
       icon: <IconBriefcase {...iconsProps} />,
     },
-  ] as const;
+  ] as const
 
   return (
-    <nav role="navigation" data-collapsible="true">
-      <div>
-        <div>
-          <IconBrandAlipay size={28} stroke={1} />
-        </div>
-        <div aria-orientation="vertical" aria-label="Navigation">
+    <nav
+      role="navigation"
+      data-collapsible="true"
+      className={cn(
+        'hidden h-screen w-12 flex-col justify-between bg-slate-100 py-12 text-black transition-all sm:flex lg:w-72 lg:pl-12'
+      )}
+    >
+      <div className="flex-1">
+        <Logo className="px-3" />
+
+        <div className="space-y-2 pt-8" aria-orientation="vertical" aria-label="Navigation">
           {menus.map((menu) => (
-            <Link
+            <MenuLink
               aria-current={pathname === menu.path}
               aria-label={menu.label}
               key={menu.label}
-              href={menu.path}
               data-active-link={pathname === menu.path}
-            >
-              {menu.label}
-            </Link>
+              href={menu.path}
+              label={menu.label}
+              leftSection={menu.icon}
+              active={pathname === menu.path}
+              variant="transparent"
+            />
           ))}
         </div>
       </div>
 
       <div>
-        <button>
-          <IconLogout /> Logout
-        </button>
+        <Button variant="transparent" leftSection={<IconLogout {...iconsProps} />}>
+          Logout
+        </Button>
       </div>
     </nav>
-  );
-};
+  )
+}
