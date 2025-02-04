@@ -43,7 +43,7 @@ export const Navegation = () => {
       role="navigation"
       data-collapsible="true"
       className={cn(
-        'hidden h-screen w-12 flex-col justify-between bg-slate-100 py-12 text-black transition-all sm:flex lg:w-72 lg:pl-12'
+        'sticky top-0 hidden h-screen w-12 flex-col justify-between bg-gray-100 py-12 text-black transition-all sm:flex lg:w-56 lg:pl-8'
       )}
     >
       <div className="flex-1">
