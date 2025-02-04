@@ -18,7 +18,10 @@ export const BudgetItem: React.FC<BudgetItemProps> = ({ title, date, status, amo
         <h1 className="text-sm font-semibold">{title}</h1>
         <span className="text-xs text-gray-500">{date}</span>
       </div>
-      <Badge className="mx-4">{status}</Badge>
+      <Badge className="mx-4" variant="outline">
+        <span className="mr-1 h-2 w-2 rounded-full bg-red-600" />
+        {status}
+      </Badge>
       <span className="ml-auto text-xs font-semibold">{amount}</span>
     </div>
   )
