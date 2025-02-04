@@ -9,7 +9,7 @@ export const BudgetList: React.FC<BudgetListProps> = ({ budgets }) => {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center justify-between">
-        <span className="text-lg text-gray-800">Orcamentos</span>
+        <span className="text-sm text-gray-800">Orcamentos</span>
         <Select>
           <SelectTrigger className="w-[100px]">
             <SelectValue placeholder="Theme" />
