@@ -10,7 +10,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+import { Input, InputPassword } from '@/components/ui/input'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 
@@ -40,7 +40,7 @@ export const LoginForm = () => {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input placeholder="Enter your password" {...field} />
+                <InputPassword {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
