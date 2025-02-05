@@ -36,16 +36,16 @@ export default function HomePage() {
         <UserInfo />
         <Notifications />
         <div className="flex flex-col items-center justify-between gap-4 lg:flex-row">
-          <Button className="w-full text-left" variant={'secondary'}>
-            <IconScriptPlus strokeWidth={1} size={18} />
+          <Button className="w-full bg-green-600 text-left">
+            <IconScriptPlus strokeWidth={2} />
             Budget
           </Button>
-          <Button className="w-full text-left" variant={'secondary'}>
-            <IconUserPlus strokeWidth={1} size={18} />
+          <Button className="w-full text-left">
+            <IconUserPlus strokeWidth={2} />
             Client
           </Button>
-          <Button className="w-full text-left" variant={'secondary'}>
-            <IconTagPlus strokeWidth={1} size={18} />
+          <Button className="w-full text-left">
+            <IconTagPlus strokeWidth={2} />
             Service
           </Button>
         </div>
