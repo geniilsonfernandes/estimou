@@ -8,7 +8,7 @@ body {
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 210 20% 98%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -70,5 +70,41 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .brand-gradient {
+    @apply bg-gradient-to-br from-brand-500 to-brand-700;
+  }
+
+  .btn-steel-900 {
+    @apply w-full bg-gradient-to-b from-slate-700 to-slate-800 
+           hover:from-slate-600 hover:to-slate-700 
+           transition-colors duration-300;
+  }
+
+  .btn-steel-800 {
+    @apply w-full bg-gradient-to-b from-slate-600 to-slate-700 
+           hover:from-slate-500 hover:to-slate-600 
+           transition-colors duration-300;
+  }
+
+  .btn-steel-700 {
+    @apply w-full bg-gradient-to-b from-slate-500 to-slate-600 
+           hover:from-slate-400 hover:to-slate-500 
+           transition-colors duration-300;
+  }
+
+  .btn-steel-600 {
+    @apply w-full bg-gradient-to-b from-slate-400 to-slate-500 
+           hover:from-slate-300 hover:to-slate-400 
+           transition-colors duration-300;
+  }
+
+  .btn-steel-500 {
+    @apply w-full bg-gradient-to-b from-slate-100 to-slate-200 
+           hover:from-slate-200 hover:to-slate-300 
+           transition-colors duration-300;
   }
 }
