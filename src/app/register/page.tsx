@@ -2,30 +2,75 @@ import { Logo } from '@/components/Logo'
 import { Button } from '@/components/ui/button'
 import { IconBrandGoogle } from '@tabler/icons-react'
 import Link from 'next/link'
-import { LoginForm } from './components/LoginForm'
+import { RegisterForm } from './components/RegisterForm'
 
 export const metadata = {
-  title: 'login no Estimou',
+  title: 'Cadastro no Estimou',
 }
 
-export default function Login() {
+// type AuthFormWrapperProps = {
+//   children: React.ReactNode
+//   showGoogleButton?: boolean
+//   type: 'login' | 'register'
+// }
+
+// const AuthFormWrapper: React.FC<AuthFormWrapperProps> = ({
+//   children,
+//   type,
+// }: {
+//   children: React.ReactNode
+// }) => {
+//   return (
+//     <div className="w-full space-y-8">
+//       <Logo />
+//       <div className="flex flex-col space-y-2">
+//         <h1 className="text-2xl font-semibold tracking-tight">Cadastre-se no Estimou</h1>
+//         <p className="text-sm text-muted-foreground">
+//           Insira seu e-mail abaixo para entrar em sua conta
+//         </p>
+//       </div>
+
+//       <RegisterForm />
+//       <p className="text-center text-sm text-muted-foreground">
+//         Já possui uma conta?{' '}
+//         <Link href="/login" className="text-primary underline underline-offset-4">
+//           Login
+//         </Link>
+//       </p>
+//       <div className="relative my-8">
+//         <div className="absolute inset-0 flex items-center">
+//           <span className="w-full border-t" />
+//         </div>
+//         <div className="relative flex justify-center text-xs">
+//           <span className="bg-background px-2 text-sm">ou</span>
+//         </div>
+//       </div>
+//       <Button variant="outline" className="btn-steel-500 w-full" type="button">
+//         <IconBrandGoogle className="mr-2 h-4 w-4" />
+//         Login com Google
+//       </Button>
+//     </div>
+//   )
+// }
+
+export default function Register() {
   return (
     <div className="container flex min-h-screen justify-center gap-8 bg-gray-50 p-8">
       <div className="flex flex-1 flex-col justify-between rounded-lg px-8">
         <div className="w-full space-y-8">
           <Logo />
           <div className="flex flex-col space-y-2">
-            <h1 className="text-2xl font-semibold tracking-tight">Bem-vindo de volta</h1>
+            <h1 className="text-2xl font-semibold tracking-tight">Cadastre-se no Estimou</h1>
             <p className="text-sm text-muted-foreground">
               Insira seu e-mail abaixo para entrar em sua conta
             </p>
           </div>
 
-          <LoginForm />
+          <RegisterForm />
           <p className="text-center text-sm text-muted-foreground">
-            Ainda não possui uma conta?{' '}
-            <Link href="/register" className="text-primary underline underline-offset-4">
-              Registre-se
+            Já possui uma conta?{' '}
+            <Link href="/login" className="text-primary underline underline-offset-4">
+              Login
             </Link>
           </p>
           <div className="relative my-8">

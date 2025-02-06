@@ -79,32 +79,30 @@ body {
   }
 
   .btn-steel-900 {
-    @apply w-full bg-gradient-to-b from-slate-700 to-slate-800 
-           hover:from-slate-600 hover:to-slate-700 
-           transition-colors duration-300;
+    @apply bg-gradient-to-b from-slate-600 to-slate-800 transition-colors duration-300 hover:from-slate-600 hover:to-slate-700 border;
   }
 
   .btn-steel-800 {
-    @apply w-full bg-gradient-to-b from-slate-600 to-slate-700 
-           hover:from-slate-500 hover:to-slate-600 
-           transition-colors duration-300;
+    @apply bg-gradient-to-b from-slate-600 to-slate-700 transition-colors duration-300 hover:from-slate-500 hover:to-slate-600 border;
   }
 
   .btn-steel-700 {
-    @apply w-full bg-gradient-to-b from-slate-500 to-slate-600 
-           hover:from-slate-400 hover:to-slate-500 
-           transition-colors duration-300;
+    @apply bg-gradient-to-b from-slate-500 to-slate-600 transition-colors duration-300 hover:from-slate-400 hover:to-slate-500 border;
   }
 
   .btn-steel-600 {
-    @apply w-full bg-gradient-to-b from-slate-400 to-slate-500 
-           hover:from-slate-300 hover:to-slate-400 
-           transition-colors duration-300;
+    @apply bg-gradient-to-b from-slate-400 to-slate-500 transition-colors duration-300 hover:from-slate-300 hover:to-slate-400 border;
   }
 
   .btn-steel-500 {
-    @apply w-full bg-gradient-to-b from-slate-100 to-slate-200 
-           hover:from-slate-200 hover:to-slate-300 
-           transition-colors duration-300;
+    @apply bg-gradient-to-b from-slate-100 to-slate-200 transition-colors duration-300 hover:from-slate-200 hover:to-slate-300 border;
+  }
+
+  .steel-500 {
+   @apply bg-gradient-to-b from-slate-100 to-slate-200
+  }
+
+  .container-flex {
+    @apply container flex;
   }
 }
