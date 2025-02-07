@@ -26,15 +26,12 @@ export default auth(async (req) => {
     return Promise.resolve()
   }
 
-  // I cannot redirect to the login page.
-  // TODO: Fix this later
   if (!isPublicRoute && !isAuthenticated) {
-    return Response.redirect(new URL('/', nextUrl))
+    return Response.redirect(new URL('/login', nextUrl))
   }
 
   return Promise.resolve()
 })
-
 
 export const config = {
   matcher: [
