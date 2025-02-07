@@ -50,7 +50,7 @@ const chartConfig = {
 
 export const Analytics: React.FC = () => {
   return (
-    <div className="space-y-8 px-8">
+    <div className="sticky top-0 space-y-8 px-8">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-lg font-semibold text-gray-900">Seus orçamentos neste mês</h1>

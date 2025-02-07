@@ -1,5 +1,5 @@
 import NextAuth from 'next-auth'
-import { authRoutes, DEFAULT_LOGIN_REDIRECT, publicRoutes } from './routes'
+import { authRoutes, publicRoutes } from './routes'
 import authConfig from './utils/auth.config'
 
 // Use only one of the two middleware options below
@@ -21,13 +21,15 @@ export default auth(async (req) => {
 
   if (isAuthRoutes) {
     if (isAuthenticated) {
-      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl))
+      return Response.redirect(new URL('/', nextUrl))
     }
     return Promise.resolve()
   }
 
+  // I cannot redirect to the login page.
+  // TODO: Fix this later
   if (!isPublicRoute && !isAuthenticated) {
-    return Response.redirect(new URL('/login', nextUrl))
+    return Response.redirect(new URL('/', nextUrl))
   }
 
   return Promise.resolve()

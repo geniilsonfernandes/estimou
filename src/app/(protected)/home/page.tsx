@@ -3,7 +3,7 @@ import { BudgetList } from '@/components/BudgetList/BudgetList'
 import { Notifications } from '@/components/Notifications/Notifications'
 import { Button } from '@/components/ui/button'
 import { UserInfo } from '@/components/UserInfo/UserInfo'
-import { auth, signOut } from '@/utils/auth'
+import { auth } from '@/utils/auth'
 import { IconScriptPlus, IconTagPlus, IconUserPlus } from '@tabler/icons-react'
 
 import { forwardRef } from 'react'
@@ -34,27 +34,11 @@ export default async function HomePage() {
   const session = await auth()
   return (
     <div className="flex flex-col md:flex-row">
-      {session?.user?.email}
-
-    <form action={
-      async () => {
-        "use server"
-       await signOut()
-      }
-    }>
-      <button>
-        Sair
-      </button>
-
-    </form>
       <div className="flex-1 space-y-4 p-8">
-        <UserInfo />
+        <UserInfo session={session} />
         <Notifications />
         <div className="flex flex-col items-center justify-between gap-4 lg:flex-row">
-          <Button className="w-full bg-green-600 text-left"
-
-          
-          >
+          <Button className="w-full bg-green-600 text-left">
             <IconScriptPlus strokeWidth={2} />
             Budget
           </Button>

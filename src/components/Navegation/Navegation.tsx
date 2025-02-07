@@ -1,15 +1,13 @@
-"use client";
+'use client'
+import { signOut } from 'next-auth/react'
 
 import { cn } from '@/lib/cn'
 import { IconBriefcase, IconLogout, IconProps, IconSmartHome, IconUsers } from '@tabler/icons-react'
-import { usePathname } from "next/navigation";
-
+import { usePathname } from 'next/navigation'
 
 import { MenuLink } from '@/components//MenuLink'
 import { Button } from '@/components/Button'
 import { Logo } from '../Logo'
-
-
 
 export const Navegation = () => {
   const pathname = usePathname()
@@ -67,7 +65,11 @@ export const Navegation = () => {
       </div>
 
       <div>
-        <Button variant="transparent" leftSection={<IconLogout {...iconsProps} />}>
+        <Button
+          variant="transparent"
+          onClick={() => signOut()}
+          leftSection={<IconLogout {...iconsProps} />}
+        >
           Logout
         </Button>
       </div>
