@@ -8,7 +8,7 @@ export const publicRoutes = ['/', '/auth/verify']
  * List of authentication-related routes.
  * These routes are used for login, registration, and other auth-related pages.
  */
-export const authRoutes = ['/login', '/register', '/auth/error']
+export const authRoutes = ['/auth/login', '/auth/register', '/auth/error']
 
 /**
  * Default route to redirect authenticated users after login.

@@ -52,7 +52,7 @@ export const LoginForm = () => {
   }
   return (
     <Form {...form}>
-      <form className="my-8 space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
+      <form className="my-8 space-y-2" onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
           name="email"
@@ -80,7 +80,7 @@ export const LoginForm = () => {
             </FormItem>
           )}
         />
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between pb-4">
           <div className="flex items-center gap-2">
             <Checkbox />
             <label htmlFor="remember" className="text-sm text-muted-foreground">
@@ -105,7 +105,7 @@ export const LoginForm = () => {
           </Alert>
         )}
 
-        <Button type="submit" className="btn-steel-900 w-full" disabled={isPending}>
+        <Button type="submit" className="w-full " disabled={isPending}>
           <IconLogin2 />
           Login
         </Button>

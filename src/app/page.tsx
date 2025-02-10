@@ -9,13 +9,13 @@ export default function Home() {
       <nav className="container sticky top-6 flex justify-between rounded-2xl">
         <Logo />
         <div className="space-x-4">
-          <Link href="/login" passHref>
+          <Link href="/auth/login" passHref>
             <Button>
               <IconLogin2 />
               Login
             </Button>
           </Link>
-          <Link href="/register" passHref>
+          <Link href="/auth/register" passHref>
             <Button variant="secondary">
               <IconRocket />
               Cadastre-se
@@ -32,7 +32,7 @@ export default function Home() {
               </Button>
             </div>
             <div className="flex flex-col gap-4">
-              <h1 className="font-exo text-center text-3xl font-bold tracking-tight">
+              <h1 className="text-center font-exo text-3xl font-bold tracking-tight">
                 Diga adeus aos orçamentos via WhatsApp e PDFs!
               </h1>
               <p className="text-md max-w-2xl text-center leading-relaxed tracking-tight text-muted-foreground md:text-xl">

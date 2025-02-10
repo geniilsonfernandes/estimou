@@ -80,6 +80,7 @@ export const RegisterForm = () => {
         />
         {/* <FormError /> */}
         {/* Todo create this component */}
+        <div className="pb-4"></div>
         {error && (
           <Alert className="my-2" variant="destructive">
             <AlertCircle className="mr-2 h-4 w-4" />
