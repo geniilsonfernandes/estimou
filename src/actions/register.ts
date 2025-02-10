@@ -2,6 +2,8 @@
 
 import { getUserByEmail } from '@/data/user'
 import { db } from '@/lib/db'
+import { sendVerificationEmail } from '@/lib/mail'
+import { generateVerificationToken } from '@/lib/tokens'
 import { registerSchema } from '@/schemas'
 import bcrypt from 'bcryptjs'
 import { z } from 'zod'
@@ -35,9 +37,10 @@ export const register = async (data: z.infer<typeof registerSchema>) => {
     },
   })
 
-  // TODO: send email confirmation
+  const verificationToken = await generateVerificationToken(email)
+  await sendVerificationEmail(email, verificationToken.token)
 
   return {
-    success: true,
+    success: 'Confirm your email address',
   }
 }

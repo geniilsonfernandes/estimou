@@ -21,7 +21,7 @@ export default auth(async (req) => {
 
   if (isAuthRoutes) {
     if (isAuthenticated) {
-      return Response.redirect(new URL('/', nextUrl))
+      return Response.redirect(new URL('/home', nextUrl))
     }
     return Promise.resolve()
   }

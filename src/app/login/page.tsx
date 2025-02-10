@@ -1,6 +1,5 @@
 import { Logo } from '@/components/Logo'
-import { Button } from '@/components/ui/button'
-import { IconBrandGoogle } from '@tabler/icons-react'
+import { SocialLoginButton } from '@/components/SocialLoginButton/SocialLoginButton'
 import Link from 'next/link'
 import { LoginForm } from './components/LoginForm'
 
@@ -36,10 +35,7 @@ export default function Login() {
               <span className="bg-background px-2 text-sm">ou</span>
             </div>
           </div>
-          <Button variant="outline" className="btn-steel-500 w-full" type="button">
-            <IconBrandGoogle className="mr-2 h-4 w-4" />
-            Login com Google
-          </Button>
+          <SocialLoginButton />
         </div>
 
         <div className="flex flex-col items-center justify-between gap-4 pt-8 md:flex-row">

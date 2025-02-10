@@ -13,14 +13,18 @@ import { Input, InputPassword } from '@/components/ui/input'
 import { IconLogin2 } from '@tabler/icons-react'
 
 import { register } from '@/actions/register'
+import { Alert, AlertDescription } from '@/components/ui/alert'
 import { registerSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useTransition } from 'react'
+import { AlertCircle } from 'lucide-react'
+import { useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 export const RegisterForm = () => {
   const [isPending, startTransition] = useTransition()
+  const [success, setSuccess] = useState<string>()
+  const [error, setError] = useState<string>()
   const form = useForm({
     defaultValues: {
       email: '',
@@ -31,7 +35,16 @@ export const RegisterForm = () => {
 
   const onSubmit = (data: z.infer<typeof registerSchema>) => {
     startTransition(() => {
-      register(data)
+      register(data).then((r) => {
+        console.log(r)
+
+        if (r.success) {
+          setSuccess(r.success)
+        }
+        if (r.error) {
+          setError(r.error)
+        }
+      })
     })
   }
 
@@ -67,6 +80,18 @@ export const RegisterForm = () => {
         />
         {/* <FormError /> */}
         {/* Todo create this component */}
+        {error && (
+          <Alert className="my-2" variant="destructive">
+            <AlertCircle className="mr-2 h-4 w-4" />
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
+        {success && (
+          <Alert className="my-2" variant="success">
+            <AlertCircle className="mr-2 h-4 w-4" />
+            <AlertDescription>{success}</AlertDescription>
+          </Alert>
+        )}
         <Button type="submit" className="w-full" disabled={isPending}>
           <IconLogin2 />
           Criar Conta

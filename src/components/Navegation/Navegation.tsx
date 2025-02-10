@@ -21,7 +21,7 @@ export const Navegation = () => {
   const menus = [
     {
       label: 'Home',
-      path: '/',
+      path: '/home',
       icon: <IconSmartHome {...iconsProps} />,
     },
     {
