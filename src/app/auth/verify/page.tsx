@@ -1,6 +1,7 @@
-import { VerifyForm } from '@/components/forms/VerifyForm'
+import { VerificationForm } from '@/components/forms/VerificationForm'
 import { Logo } from '@/components/Logo'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
+import Link from 'next/link'
 
 export default function VerifyPage() {
   return (
@@ -10,9 +11,13 @@ export default function VerifyPage() {
           <Logo />
         </CardHeader>
         <CardContent className="text-cenxter">
-          <VerifyForm />
+          <VerificationForm />
         </CardContent>
-        <CardFooter></CardFooter>
+        <CardFooter className="flex justify-center">
+          <Link href="/auth/login" className="text-center text-sm text-muted-foreground">
+            Voltar para Login
+          </Link>
+        </CardFooter>
       </Card>
     </div>
   )

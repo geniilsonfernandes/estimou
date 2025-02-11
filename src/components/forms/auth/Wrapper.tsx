@@ -19,7 +19,7 @@ type AuthFormWrapperProps = {
 export const Wrapper: React.FC<AuthFormWrapperProps> = ({
   children,
   callToAction,
-  href,
+  href ,
   linkText,
   subtitle,
   title,
@@ -27,7 +27,7 @@ export const Wrapper: React.FC<AuthFormWrapperProps> = ({
   hiddenSocialLogin = false,
 }) => {
   return (
-    <div className="flex w-full flex-1 flex-col justify-between ">
+    <div className="flex w-full flex-1 flex-col justify-between">
       <Link href="/" passHref>
         <Logo />
       </Link>

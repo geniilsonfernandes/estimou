@@ -1,1 +1,1 @@
-export * from './VerifyForm';
+export * from './VerificationForm'
