@@ -1,4 +1,8 @@
-# Estimou - Gerador de Orçamentos
+<p align="center">
+<img style="align:center;" src="./public/estimou.png" alt="Notesnook Logo" width="100" />
+</p>
+
+<h1 align="center">Estimou</h1>
 
 Estimou é um aplicativo web intuitivo para criação de orçamentos personalizados, permitindo que freelancers e pequenas empresas agilizem o processo de precificação de serviços.
 
