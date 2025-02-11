@@ -5,7 +5,7 @@ export const Logo: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ className
   return (
     <div
       className={cn(
-        'font-exo flex items-center gap-2 space-x-2 text-lg font-bold text-gray-800',
+        'inline-flex items-center gap-2 space-x-2 font-exo text-lg font-bold text-gray-800',
         className
       )}
       {...props}
