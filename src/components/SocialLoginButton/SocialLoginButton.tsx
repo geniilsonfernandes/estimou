@@ -1,12 +1,14 @@
-"use client"
-
+'use client'
 
 import { IconBrandGoogle } from '@tabler/icons-react'
 import { signIn } from 'next-auth/react'
 import { Button } from '../ui/button'
 
-
 export const SocialLoginButton = () => {
+  const handleClick = async () => {
+    signIn('google')
+  }
+
   return (
     <>
       <div className="relative my-8">
@@ -17,14 +19,7 @@ export const SocialLoginButton = () => {
           <span className="bg-background px-2 text-sm">ou</span>
         </div>
       </div>
-      <Button
-        onClick={() => {
-          signIn('google')
-        }}
-        variant="outline"
-        className="w-full"
-        type="button"
-      >
+      <Button onClick={handleClick} variant="outline" className="w-full" type="button">
         <IconBrandGoogle className="mr-2 h-4 w-4" />
         Login com Google
       </Button>
