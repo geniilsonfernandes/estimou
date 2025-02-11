@@ -93,7 +93,7 @@ export const RegisterForm = () => {
             <AlertDescription>{success}</AlertDescription>
           </Alert>
         )}
-        <Button type="submit" className="w-full" disabled={isPending}>
+        <Button type="submit" isLoading={isPending} className="w-full" disabled={isPending}>
           <IconLogin2 />
           Criar Conta
         </Button>

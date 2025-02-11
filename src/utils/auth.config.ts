@@ -8,7 +8,7 @@ import Google from 'next-auth/providers/google'
 
 export default {
   pages: {
-    signIn: '/login',
+    signIn: '/auth/login',
     error: '/auth/error',
   },
   events: {

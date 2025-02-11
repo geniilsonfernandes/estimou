@@ -26,7 +26,7 @@ export const Wrapper: React.FC<AuthFormWrapperProps> = ({
   hiddenSocialLogin = false,
 }) => {
   return (
-    <div className="flex w-full flex-1 flex-col justify-between px-8">
+    <div className="flex w-full flex-1 flex-col justify-between px-4">
       <Logo />
       <div className="flex-1 space-y-6 pt-8">
         <FormHeader title={title} subtitle={subtitle} />

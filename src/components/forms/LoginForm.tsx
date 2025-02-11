@@ -105,7 +105,7 @@ export const LoginForm = () => {
           </Alert>
         )}
 
-        <Button type="submit" className="w-full " disabled={isPending}>
+        <Button isLoading={isPending} type="submit" className="w-full" disabled={isPending}>
           <IconLogin2 />
           Login
         </Button>
