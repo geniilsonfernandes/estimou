@@ -10,6 +10,18 @@ export default {
   ],
   theme: {
     extend: {
+      animation: {
+        upDown: 'upDown 2s ease-in-out infinite',
+      },
+      keyframes: {
+        upDown: {
+          '0%': { transform: 'translateY(-5px)', opacity: '.5' },
+          '25%': { transform: 'translateY(5px)', opacity: '1' },
+          '50%': { transform: 'translateY(-5px)', opacity: '.5' },
+          '75%': { transform: 'translateY(5px)', opacity: '1' },
+          '100%': { transform: 'translateY(-5px)', opacity: '.5' },
+        },
+      },
       fontFamily: {
         exo: ['var(--font-exo)', 'sans-serif'],
       },
