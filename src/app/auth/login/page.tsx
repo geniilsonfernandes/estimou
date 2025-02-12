@@ -9,7 +9,7 @@ export default function Login() {
   return (
     <div className="container flex min-h-screen justify-center gap-8 bg-gray-50 p-8">
       <Wrapper
-        title="Login"
+        title="Login no Estimou"
         subtitle="Insira seu e-mail abaixo para entrar em sua conta"
         callToAction="Cadastre-se"
         href="/auth/register"

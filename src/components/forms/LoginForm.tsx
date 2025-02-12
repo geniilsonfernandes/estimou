@@ -2,7 +2,6 @@
 
 import { login } from '@/actions/login'
 import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
 import {
   Form,
   FormControl,
@@ -60,7 +59,7 @@ export const LoginForm = () => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="Enter your email" {...field} />
+                <Input placeholder="gzLbI@example.com" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -71,26 +70,21 @@ export const LoginForm = () => {
           control={form.control}
           name="password"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="relative">
+              <Link
+                href="/forgot-password"
+                className="absolute right-0 top-[8px] text-xs text-muted-foreground hover:underline"
+              >
+                Esqueceu sua senha?
+              </Link>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <InputPassword {...field} />
+                <InputPassword placeholder="Entre com sua senha" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <div className="flex items-center justify-between pb-4">
-          <div className="flex items-center gap-2">
-            <Checkbox />
-            <label htmlFor="remember" className="text-sm text-muted-foreground">
-              Manter conectado
-            </label>
-          </div>
-          <Link href="/forgot-password" className="text-sm hover:text-primary">
-            Esqueceu sua senha?
-          </Link>
-        </div>
 
         {urlError && (
           <Snackbar
@@ -108,7 +102,7 @@ export const LoginForm = () => {
           />
         )}
 
-        <Button isLoading={isPending} type="submit" className="w-full" disabled={isPending}>
+        <Button isLoading={isPending} type="submit" className="mt-4 w-full" disabled={isPending}>
           <IconLogin2 />
           Login
         </Button>

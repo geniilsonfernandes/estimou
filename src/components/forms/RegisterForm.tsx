@@ -56,7 +56,7 @@ export const RegisterForm = () => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="Entre com seu email" {...field} />
+                <Input placeholder="gzLbI@example.com" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
