@@ -13,20 +13,25 @@ import { Input, InputPassword } from '@/components/ui/input'
 import { IconLogin2 } from '@tabler/icons-react'
 
 import { register } from '@/actions/register'
-import { Alert, AlertDescription } from '@/components/ui/alert'
 import { registerSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { AlertCircle } from 'lucide-react'
-import { useState, useTransition } from 'react'
+import { useMutation } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { Snackbar } from '../Snackbar/Snackbar'
 
 export const RegisterForm = () => {
-  const [isPending, startTransition] = useTransition()
-  const [success, setSuccess] = useState<string>()
-  const [error, setError] = useState<string>()
-  const form = useForm({
+  const {
+    mutate: registerMutation,
+    isPending,
+    data,
+  } = useMutation({
+    mutationFn: register,
+  })
+
+  const form = useForm<z.infer<typeof registerSchema>>({
     defaultValues: {
+      name: '',
       email: '',
       password: '',
     },
@@ -34,23 +39,16 @@ export const RegisterForm = () => {
   })
 
   const onSubmit = (data: z.infer<typeof registerSchema>) => {
-    startTransition(() => {
-      register(data).then((r) => {
-        console.log(r)
-
-        if (r.success) {
-          setSuccess(r.success)
-        }
-        if (r.error) {
-          setError(r.error)
-        }
-      })
+    registerMutation(data, {
+      onSuccess: () => {
+        form.reset()
+      },
     })
   }
 
   return (
     <Form {...form}>
-      <form className="my-8 space-y-2" onSubmit={form.handleSubmit(onSubmit)}>
+      <form className="my-8 flex flex-col gap-2" onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
           name="email"
@@ -64,7 +62,6 @@ export const RegisterForm = () => {
             </FormItem>
           )}
         />
-
         <FormField
           control={form.control}
           name="password"
@@ -78,20 +75,12 @@ export const RegisterForm = () => {
             </FormItem>
           )}
         />
-        {/* <FormError /> */}
-        {/* Todo create this component */}
-        <div className="pb-4"></div>
-        {error && (
-          <Alert className="my-2" variant="destructive">
-            <AlertCircle className="mr-2 h-4 w-4" />
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
-        )}
-        {success && (
-          <Alert className="my-2" variant="success">
-            <AlertCircle className="mr-2 h-4 w-4" />
-            <AlertDescription>{success}</AlertDescription>
-          </Alert>
+        {data?.message && (
+          <Snackbar
+            message={data.message}
+            variant={data.success ? 'success' : 'error'}
+            aria-live="polite"
+          />
         )}
         <Button type="submit" isLoading={isPending} className="w-full" disabled={isPending}>
           <IconLogin2 />
