@@ -4,13 +4,11 @@ import { getUserByEmail } from '@/data/user'
 import { db } from '@/lib/db'
 import { sendVerificationEmail } from '@/lib/mail'
 import { generateVerificationToken } from '@/lib/tokens'
-import { registerSchema } from '@/schemas'
+import { type RegisterData, registerSchema } from '@/schemas'
 import bcrypt from 'bcryptjs'
-import { z } from 'zod'
+import { ActionResponse } from './types'
 
-type RegisterResponse = { success: true; message: string } | { success: false; message: string }
-
-export const register = async (data: z.infer<typeof registerSchema>): Promise<RegisterResponse> => {
+export const register = async (data: RegisterData): Promise<ActionResponse> => {
   const validation = registerSchema.safeParse(data)
   if (!validation.success) {
     return {

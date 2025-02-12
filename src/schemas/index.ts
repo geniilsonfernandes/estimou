@@ -11,6 +11,8 @@ export const registerSchema = z.object({
 })
 
 
+export type RegisterData = z.infer<typeof registerSchema>
+
 export const loginSchema = z.object({
   email: z.string().email({
     message: 'Email inválido',
