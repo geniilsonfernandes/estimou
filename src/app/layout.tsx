@@ -1,3 +1,4 @@
+import { Providers } from '@/utils/Providers'
 import type { Metadata } from 'next'
 import { Exo, Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
@@ -30,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} ${exo.variable} antialiased`}>
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   )
