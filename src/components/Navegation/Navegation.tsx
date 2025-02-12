@@ -6,8 +6,8 @@ import { IconBriefcase, IconLogout, IconProps, IconSmartHome, IconUsers } from '
 import { usePathname } from 'next/navigation'
 
 import { MenuLink } from '@/components//MenuLink'
-import { Button } from '@/components/Button'
 import { Logo } from '../Logo'
+import { Button } from '../ui/button'
 
 export const Navegation = () => {
   const pathname = usePathname()
@@ -65,11 +65,8 @@ export const Navegation = () => {
       </div>
 
       <div>
-        <Button
-          variant="transparent"
-          onClick={() => signOut()}
-          leftSection={<IconLogout {...iconsProps} />}
-        >
+        <Button variant="ghost" onClick={() => signOut()}>
+          <IconLogout {...iconsProps} />
           Logout
         </Button>
       </div>
