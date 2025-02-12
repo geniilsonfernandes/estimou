@@ -14,7 +14,7 @@ export default function AuthErrorPage() {
           <h1 className="text-2xl">Ops algo deu errado</h1>
         </CardHeader>
         <CardContent className="text-cenxter">
-          <Link href="/login" passHref>
+          <Link href="/auth/login" passHref>
             <Button>Voltar para o login</Button>
           </Link>
         </CardContent>
