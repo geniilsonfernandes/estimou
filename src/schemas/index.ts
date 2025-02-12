@@ -10,7 +10,6 @@ export const registerSchema = z.object({
   }),
 })
 
-
 export type RegisterData = z.infer<typeof registerSchema>
 
 export const loginSchema = z.object({
@@ -21,3 +20,5 @@ export const loginSchema = z.object({
     message: 'Senha inválida',
   }),
 })
+
+export type LoginData = z.infer<typeof loginSchema>

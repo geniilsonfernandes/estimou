@@ -47,6 +47,7 @@ export const register = async (data: RegisterData): Promise<ActionResponse> => {
       message: 'Confirm your email address',
     }
   } catch {
+    // TODO handle error ADD SENTRY
     return {
       success: false,
       message: 'Something went wrong. Please try again later.',

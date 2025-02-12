@@ -82,7 +82,7 @@ export const RegisterForm = () => {
             aria-live="polite"
           />
         )}
-        <Button type="submit" isLoading={isPending} className="w-full" disabled={isPending}>
+        <Button type="submit" isLoading={isPending} className="mt-4 w-full" disabled={isPending}>
           <IconLogin2 />
           Criar Conta
         </Button>

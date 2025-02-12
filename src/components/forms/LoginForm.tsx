@@ -1,7 +1,6 @@
 'use client'
 
 import { login } from '@/actions/login'
-import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import {
@@ -16,12 +15,12 @@ import { Input, InputPassword } from '@/components/ui/input'
 import { loginSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { IconLogin2 } from '@tabler/icons-react'
-import { AlertCircle } from 'lucide-react'
+import { useMutation } from '@tanstack/react-query'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-import { useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { Snackbar } from '../Snackbar/Snackbar'
 
 const ACCOUNT_NOT_LINKED = 'OAuthAccountNotLinked'
 const AUTH_ERROS_MESSAGES = {
@@ -29,10 +28,17 @@ const AUTH_ERROS_MESSAGES = {
 }
 
 export const LoginForm = () => {
-  const [error, setError] = useState<string>()
   const searchParams = useSearchParams()
   const urlError = searchParams.get('error') === ACCOUNT_NOT_LINKED
-  const [isPending, startTransition] = useTransition()
+
+  const {
+    mutate: loginMutation,
+    isPending,
+    data,
+  } = useMutation({
+    mutationFn: login,
+  })
+
   const form = useForm({
     defaultValues: {
       email: '',
@@ -42,17 +48,15 @@ export const LoginForm = () => {
   })
 
   const onSubmit = (data: z.infer<typeof loginSchema>) => {
-    startTransition(() => {
-      login(data).then((r) => {
-        if (r?.error) {
-          setError(r.error)
-        }
-      })
+    loginMutation(data, {
+      onSuccess: () => {
+        form.reset()
+      },
     })
   }
   return (
     <Form {...form}>
-      <form className="my-8 space-y-2" onSubmit={form.handleSubmit(onSubmit)}>
+      <form className="my-8 flex flex-col gap-2" onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
           name="email"
@@ -91,18 +95,21 @@ export const LoginForm = () => {
             Esqueceu sua senha?
           </Link>
         </div>
+
         {urlError && (
-          <Alert variant="destructive">
-            <AlertCircle className="h-4 w-4" />
-            <AlertDescription>{AUTH_ERROS_MESSAGES[ACCOUNT_NOT_LINKED]}</AlertDescription>
-          </Alert>
+          <Snackbar
+            message={AUTH_ERROS_MESSAGES[ACCOUNT_NOT_LINKED]}
+            variant={'error'}
+            aria-live="polite"
+          />
         )}
 
-        {error && (
-          <Alert className="my-2" variant="destructive">
-            <AlertCircle className="mr-2 h-4 w-4" />
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
+        {data?.message && (
+          <Snackbar
+            message={data.message}
+            variant={data.success ? 'success' : 'error'}
+            aria-live="polite"
+          />
         )}
 
         <Button isLoading={isPending} type="submit" className="w-full" disabled={isPending}>
