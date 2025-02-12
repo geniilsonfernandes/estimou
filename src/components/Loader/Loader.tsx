@@ -11,7 +11,7 @@ export const Loader: React.FC<LoaderProps> = ({ color = 'white', size = 'sm', ..
     md: 'block h-[8px] w-[8px]',
     lg: 'block h-[10px] w-[10px]',
   }
-  const style = `${sizes[size]} animate-upDown rounded-full bg-${color}/40 delay-0`
+  const style = `${sizes[size]} animate-upDown rounded-full bg-${color} delay-0`
 
   return (
     <div className={cn('flex items-center justify-center gap-[4px]', props.className)} {...props}>
