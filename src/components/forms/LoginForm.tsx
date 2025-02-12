@@ -48,11 +48,7 @@ export const LoginForm = () => {
   })
 
   const onSubmit = (data: z.infer<typeof loginSchema>) => {
-    loginMutation(data, {
-      onSuccess: () => {
-        form.reset()
-      },
-    })
+    loginMutation(data)
   }
   return (
     <Form {...form}>
