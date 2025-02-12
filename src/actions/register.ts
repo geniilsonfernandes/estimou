@@ -8,39 +8,50 @@ import { registerSchema } from '@/schemas'
 import bcrypt from 'bcryptjs'
 import { z } from 'zod'
 
-export const register = async (data: z.infer<typeof registerSchema>) => {
-  const validation = registerSchema.safeParse(data)
+type RegisterResponse = { success: true; message: string } | { success: false; message: string }
 
+export const register = async (data: z.infer<typeof registerSchema>): Promise<RegisterResponse> => {
+  const validation = registerSchema.safeParse(data)
   if (!validation.success) {
     return {
-      error: 'Invalid data',
+      success: false,
+      message: 'Invalid data',
     }
   }
 
   const { email, password, name } = validation.data
+  const normalizedEmail = email.toLowerCase()
 
-  const hashedPassword = await bcrypt.hash(password, 10)
-
-  const existingUser = await getUserByEmail(email)
-
-  if (existingUser) {
-    return {
-      error: 'User already exists',
+  try {
+    const existingUser = await getUserByEmail(normalizedEmail)
+    if (existingUser) {
+      return {
+        success: false,
+        message: 'User already exists',
+      }
     }
-  }
 
-  await db.user.create({
-    data: {
-      name,
-      email,
-      password: hashedPassword,
-    },
-  })
+    const hashedPassword = await bcrypt.hash(password, 10)
 
-  const verificationToken = await generateVerificationToken(email)
-  await sendVerificationEmail(email, verificationToken.token)
+    await db.user.create({
+      data: {
+        name,
+        email: normalizedEmail,
+        password: hashedPassword,
+      },
+    })
+    const verificationToken = await generateVerificationToken(normalizedEmail)
 
-  return {
-    success: 'Confirm your email address',
+    await sendVerificationEmail(normalizedEmail, verificationToken.token)
+
+    return {
+      success: true,
+      message: 'Confirm your email address',
+    }
+  } catch {
+    return {
+      success: false,
+      message: 'Something went wrong. Please try again later.',
+    }
   }
 }
