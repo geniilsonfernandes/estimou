@@ -23,7 +23,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title }
       setTimeout(() => {
         document.body.style.overflow = 'auto'
         document.body.style.paddingRight = '0px'
-      }, 200) // Tempo da animação de saída
+      }, 200) 
     }
 
     return () => {
