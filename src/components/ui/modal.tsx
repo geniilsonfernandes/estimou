@@ -49,7 +49,11 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title, 
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className={`relative z-50 w-full max-w-${size || 'md'} rounded-2xl bg-white p-4 shadow-sm`}
+            className={cn(`relative z-50 w-full max-w-md rounded-2xl bg-white p-4 shadow-sm`, {
+              'max-w-sm': size === 'sm',
+              'max-w-md': size === 'md',
+              'max-w-lg': size === 'lg',
+            })}
           >
             {title && <div className="font-regular text-md flex opacity-45">{title}</div>}
             <button
