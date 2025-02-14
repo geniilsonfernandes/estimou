@@ -11,9 +11,10 @@ type ModalProps = {
   onClose: () => void
   title: string
   children: React.ReactNode
+  size?: 'sm' | 'md' | 'lg'
 }
 
-export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title }) => {
+export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title, size }) => {
   useEffect(() => {
     if (isOpen) {
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
@@ -23,7 +24,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title }
       setTimeout(() => {
         document.body.style.overflow = 'auto'
         document.body.style.paddingRight = '0px'
-      }, 200) 
+      }, 200)
     }
 
     return () => {
@@ -48,12 +49,12 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title }
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="relative z-50 w-full max-w-md rounded-2xl bg-white p-4 shadow-sm"
+            className={`relative z-50 w-full max-w-${size || 'md'} rounded-2xl bg-white p-4 shadow-sm`}
           >
             {title && <div className="font-regular text-md flex opacity-45">{title}</div>}
             <button
               onClick={onClose}
-              className="absolute right-3 top-3 rounded-lg border p-2 text-gray-500 hover:text-gray-700"
+              className="absolute right-3 top-3 rounded-lg border p-2 text-gray-500 hover:border-brand/25 hover:bg-brand-100/70 hover:text-brand-500"
             >
               <X size={16} />
             </button>
@@ -78,7 +79,7 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({ children, ...props }) 
   )
 }
 
-export const ModalFooter: React.FC<ModalHeaderProps> = ({ children, className,...props }) => {
+export const ModalFooter: React.FC<ModalHeaderProps> = ({ children, className, ...props }) => {
   return (
     <div className={cn('pt-4', className)} {...props}>
       {children}
