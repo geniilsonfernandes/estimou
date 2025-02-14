@@ -16,7 +16,6 @@ import { loginSchema } from '@/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { IconLogin2 } from '@tabler/icons-react'
 import { useMutation } from '@tanstack/react-query'
-import { useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Snackbar } from '../Snackbar/Snackbar'
@@ -30,8 +29,6 @@ const AUTH_ERROS_MESSAGES = {
 
 export const LoginForm = () => {
   const [opened, { open, close }] = useDisclosure()
-  const searchParams = useSearchParams()
-  const urlError = searchParams.get('error') === ACCOUNT_NOT_LINKED
 
   const {
     mutate: loginMutation,
@@ -57,17 +54,17 @@ export const LoginForm = () => {
       <Modal isOpen={opened} onClose={close} title="Forget Password" size="sm">
         <RecoveryForm />
       </Modal>
+
       <Form {...form}>
         <form className="my-8 flex flex-col gap-2" onSubmit={form.handleSubmit(onSubmit)}>
           <FormField
             control={form.control}
             name="email"
-            disabled={isPending}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input disabled={isPending} placeholder="gzLbI@example.com" {...field} />
+                  <Input placeholder="gzLbI@example.com" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -94,14 +91,6 @@ export const LoginForm = () => {
               </FormItem>
             )}
           />
-
-          {urlError && (
-            <Snackbar
-              message={AUTH_ERROS_MESSAGES[ACCOUNT_NOT_LINKED]}
-              variant={'error'}
-              aria-live="polite"
-            />
-          )}
 
           {data?.message && (
             <Snackbar
