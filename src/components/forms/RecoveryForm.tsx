@@ -41,17 +41,16 @@ export const SuccessFeedback: React.FC<SuccessFeedbackProps> = ({ email }) => {
         If you have an account, you will receive an email with instructions on how to reset your
         password.
       </p>
-
-      {emailUrl && (
-        <div className="flex w-full flex-col gap-2 pt-4">
+      <div className="flex w-full flex-col gap-2 pt-4">
+        {domain && (
           <Button className="w-full" onClick={openEmailApp}>
-            Open Email {domain} App
+            {domain ? `Open Email ${domain} App` : 'Open your Email'}
           </Button>
-          <Button className="w-full" variant="ghost">
-            Skip, I'll check later
-          </Button>
-        </div>
-      )}
+        )}
+        <Button className="w-full" variant="ghost">
+          Skip, I'll check later
+        </Button>
+      </div>
 
       <p className="mt-8 text-center text-sm text-muted-foreground">
         Didn't receive the email? <span className="text-brand-600 hover:underline">Send again</span>
