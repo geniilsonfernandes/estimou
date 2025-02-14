@@ -10,7 +10,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-primary  text-primary-foreground/90 hover:bg-primary/90',
+        default: 'bg-brand  text-primary-foreground/90 hover:bg-brand/90',
         destructive: 'bg-destructive text-destructive-foreground/90 hover:bg-destructive/90',
         outline:
           'border border-input text-black/70  bg-background hover:bg-accent hover:text-accent-foreground',
@@ -46,8 +46,23 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props}>
-        {isLoading && <Loader />}
-        {!isLoading && children}
+        <span
+          className={cn(
+            'duration-400 absolute transition-all ease-in-out',
+            isLoading ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
+          )}
+        >
+          <Loader />
+        </span>
+
+        <span
+          className={cn(
+            'duration-400 flex items-center gap-2 transition-all ease-in-out',
+            isLoading ? 'translate-y-4 opacity-0' : 'translate-y-0 opacity-100'
+          )}
+        >
+          {children}
+        </span>
       </Comp>
     )
   }
