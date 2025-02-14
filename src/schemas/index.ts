@@ -22,3 +22,11 @@ export const loginSchema = z.object({
 })
 
 export type LoginData = z.infer<typeof loginSchema>
+
+export const recoverPasswordSchema = z.object({
+  email: z.string().email({
+    message: 'Email inválido',
+  }),
+})
+
+export type RecoverPasswordData = z.infer<typeof recoverPasswordSchema>
