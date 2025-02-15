@@ -2,7 +2,7 @@
 
 import { getUserByEmail } from '@/data/user'
 import { sendRecoveryPasswordEmail } from '@/lib/mail'
-import { generateRecoveryToken } from '@/lib/tokens'
+import { generateResetPasswordToken } from '@/lib/tokens'
 import { RecoverPasswordData, recoverPasswordSchema } from '@/schemas'
 import { ActionResponse } from './types'
 
@@ -27,7 +27,7 @@ export const recoveryPassword = async (data: RecoverPasswordData): Promise<Actio
         message: 'User not found',
       }
     }
-    const verificationToken = await generateRecoveryToken(normalizedEmail)
+    const verificationToken = await generateResetPasswordToken(normalizedEmail)
 
     await sendRecoveryPasswordEmail(normalizedEmail, verificationToken.token)
 
@@ -37,10 +37,6 @@ export const recoveryPassword = async (data: RecoverPasswordData): Promise<Actio
     }
   } catch {
     // TODO handle error ADD SENTRY
-
-    return {
-      success: false,
-      message: 'Something went wrong. Please try again later.',
-    }
+    throw new Error('Something went wrong. Please try again later.')
   }
 }

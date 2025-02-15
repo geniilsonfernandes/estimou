@@ -30,3 +30,14 @@ export const recoverPasswordSchema = z.object({
 })
 
 export type RecoverPasswordData = z.infer<typeof recoverPasswordSchema>
+
+export const createNewPasswordSchema = z.object({
+  password: z.string().min(6, {
+    message: 'Senha inválida',
+  }),
+  confirmPassword: z.string().min(6, {
+    message: 'Senha inválida',
+  }),
+})
+
+export type CreateNewPasswordData = z.infer<typeof createNewPasswordSchema>

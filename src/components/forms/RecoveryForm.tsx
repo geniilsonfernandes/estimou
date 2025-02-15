@@ -44,7 +44,7 @@ export const SuccessFeedback: React.FC<SuccessFeedbackProps> = ({ email }) => {
       <div className="flex w-full flex-col gap-2 pt-4">
         {domain && (
           <Button className="w-full" onClick={openEmailApp}>
-            {domain ? `Open Email ${domain} App` : 'Open your Email'}
+            {domain ? `Open ${domain} App` : 'Open your Email'}
           </Button>
         )}
         <Button className="w-full" variant="ghost">

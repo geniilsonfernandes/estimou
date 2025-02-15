@@ -1,13 +1,12 @@
-import { getRecoveryTokenByEmail } from '@/data/recovery-token'
-import { getVerificationTokenByEmail } from '@/data/verification-token'
+import { getResetTokenByToken, getVerificationTokenByEmail } from '@/data/verification-token'
 import { v4 as uuid } from 'uuid'
 import { db } from './db'
 
-export const generateRecoveryToken = async (email: string) => {
+export const generateResetPasswordToken = async (email: string) => {
   const token = uuid()
-  const expires = new Date(new Date().getTime() + 3600 * 1000) // 1 hour
+  const expires = new Date(new Date().getTime() + 3600 * 1000)
 
-  const existingToken = await getRecoveryTokenByEmail(email)
+  const existingToken = await getResetTokenByToken(email)
 
   if (existingToken) {
     await db.passwordResetToken.delete({
