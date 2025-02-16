@@ -33,42 +33,53 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title, 
     }
   }, [isOpen])
 
-  return createPortal(
-    <AnimatePresence>
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
-          />
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className={cn(`relative z-50 w-full max-w-md rounded-2xl bg-white p-4 shadow-sm`, {
-              'max-w-sm': size === 'sm',
-              'max-w-md': size === 'md',
-              'max-w-lg': size === 'lg',
-            })}
-          >
-            {title && <div className="font-regular text-md flex opacity-45">{title}</div>}
-            <button
+return typeof document !== 'undefined'
+  ? createPortal(
+      <AnimatePresence>
+        {isOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={onClose}
-              className="absolute right-3 top-3 rounded-lg border p-2 text-gray-500 hover:border-brand/25 hover:bg-brand-100/70 hover:text-brand-500"
+              className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
+            />
+            <motion.div
+              layout
+              initial={{ opacity: 0, y: -150 }} // Começa menor e mais alto
+              animate={{ opacity: 1, y: 0 }} // Volta ao normal com mola
+              exit={{ opacity: 0, y: -30 }} // Sai com um leve fade e encolhe
+              transition={{
+                type: 'spring',
+                stiffness: 200, // Define a força da mola (aumentar para um bounce mais rápido)
+                damping: 12, // Controla o amortecimento (menor = mais oscilação)
+                mass: 0.5, // Deixa o objeto mais "leve" e saltitante
+              }}
+              className={cn(`relative z-50 w-full max-w-md rounded-2xl bg-white p-4 shadow-sm`, {
+                'max-w-sm': size === 'sm',
+                'max-w-md': size === 'md',
+                'max-w-lg': size === 'lg',
+              })}
             >
-              <X size={16} />
-            </button>
-            <div className="space-y-4">{children}</div>
-          </motion.div>
-        </div>
-      )}
-    </AnimatePresence>,
-    document.body
-  )
+              {title && <div className="font-regular text-md flex opacity-45">{title}</div>}
+              <motion.button
+                whileHover={{ scale: 0.96 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={onClose}
+                className="absolute right-3 top-3 rounded-lg border p-2 text-gray-500 hover:border-brand/25 hover:bg-brand-100/70 hover:text-brand-500"
+              >
+                <X size={16} />
+              </motion.button>
+              <div className="space-y-4">{children}</div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>,
+      document.body
+    )
+  : null
 }
 
 type ModalHeaderProps = HTMLAttributes<HTMLDivElement> & {
