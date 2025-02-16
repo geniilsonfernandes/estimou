@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind variants;
 
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -62,6 +63,32 @@ body {
     --chart-5: 340 75% 55%;
     --chart-6: 220 70% 50%;
   }
+
+  /* Estiliza a scrollbar no Chrome, Edge e Safari */
+  ::-webkit-scrollbar {
+    width: 8px; /* Largura da barra de rolagem */
+    height: 8px; /* Altura da scrollbar horizontal */
+    opacity: 1;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent; /* Deixa o fundo da scrollbar invisível */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(100, 100, 100, 0.4); /* Cor suave para o thumb */
+    border-radius: 4px; /* Arredondamento das bordas */
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(100, 100, 100, 0.6); /* Tom mais escuro ao passar o mouse */
+  }
+
+  /* Para Firefox */
+  * {
+    scrollbar-width: thin; /* Deixa a scrollbar mais fina */
+    scrollbar-color: rgba(100, 100, 100, 0.4) transparent; /* Cor do thumb e do track */
+  }
 }
 
 @layer base {
@@ -79,27 +106,27 @@ body {
   }
 
   .btn-steel-900 {
-    @apply bg-gradient-to-b from-slate-600 to-slate-800 transition-colors duration-300 hover:from-slate-600 hover:to-slate-700 border;
+    @apply border bg-gradient-to-b from-slate-600 to-slate-800 transition-colors duration-300 hover:from-slate-600 hover:to-slate-700;
   }
 
   .btn-steel-800 {
-    @apply bg-gradient-to-b from-slate-600 to-slate-700 transition-colors duration-300 hover:from-slate-500 hover:to-slate-600 border;
+    @apply border bg-gradient-to-b from-slate-600 to-slate-700 transition-colors duration-300 hover:from-slate-500 hover:to-slate-600;
   }
 
   .btn-steel-700 {
-    @apply bg-gradient-to-b from-slate-500 to-slate-600 transition-colors duration-300 hover:from-slate-400 hover:to-slate-500 border;
+    @apply border bg-gradient-to-b from-slate-500 to-slate-600 transition-colors duration-300 hover:from-slate-400 hover:to-slate-500;
   }
 
   .btn-steel-600 {
-    @apply bg-gradient-to-b from-slate-400 to-slate-500 transition-colors duration-300 hover:from-slate-300 hover:to-slate-400 border;
+    @apply border bg-gradient-to-b from-slate-400 to-slate-500 transition-colors duration-300 hover:from-slate-300 hover:to-slate-400;
   }
 
   .btn-steel-500 {
-    @apply bg-gradient-to-b from-slate-100 to-slate-200 transition-colors duration-300 hover:from-slate-200 hover:to-slate-300 border;
+    @apply border bg-gradient-to-b from-slate-100 to-slate-200 transition-colors duration-300 hover:from-slate-200 hover:to-slate-300;
   }
 
   .steel-500 {
-   @apply bg-gradient-to-b from-slate-100 to-slate-200
+    @apply bg-gradient-to-b from-slate-100 to-slate-200;
   }
 
   .container-flex {

@@ -36,7 +36,20 @@ export const getVerificationTokenByToken = async (token: string) => {
         token,
       },
     })
-    console.log({ verificationToken })
+
+    return verificationToken
+  } catch {
+    return null
+  }
+}
+
+export const getResetTokenByToken = async (token: string) => {
+  try {
+    const verificationToken = db.passwordResetToken.findUnique({
+      where: {
+        token,
+      },
+    })
 
     return verificationToken
   } catch {
