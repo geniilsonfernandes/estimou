@@ -1,6 +1,6 @@
 'use client'
 
-import { login } from '@/actions/login'
+import { authenticateUser } from '@/actions/authenticateUser'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -12,7 +12,8 @@ import {
 } from '@/components/ui/form'
 import { Input, InputPassword } from '@/components/ui/input'
 import { useDisclosure } from '@/hooks/useDisclosure'
-import { loginSchema } from '@/schemas'
+
+import { loginSchema } from '@/server/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { IconLogin2 } from '@tabler/icons-react'
 import { useMutation } from '@tanstack/react-query'
@@ -35,7 +36,7 @@ export const LoginForm = () => {
     isPending,
     data,
   } = useMutation({
-    mutationFn: login,
+    mutationFn: authenticateUser,
   })
 
   const form = useForm({
@@ -52,7 +53,7 @@ export const LoginForm = () => {
   return (
     <>
       <Modal isOpen={opened} onClose={close} title="Forget Password" size="sm">
-        <RecoveryForm />
+        <RecoveryForm onClose={close} />
       </Modal>
 
       <Form {...form}>

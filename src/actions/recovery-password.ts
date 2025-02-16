@@ -3,17 +3,21 @@
 import { getUserByEmail } from '@/data/user'
 import { sendRecoveryPasswordEmail } from '@/lib/mail'
 import { generateResetPasswordToken } from '@/lib/tokens'
-import { RecoverPasswordData, recoverPasswordSchema } from '@/schemas'
+import { RecoverPasswordData, recoverPasswordSchema } from '@/server/schemas'
 import { ActionResponse } from './types'
+
+class CustomError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = 'CustomError'
+  }
+}
 
 export const recoveryPassword = async (data: RecoverPasswordData): Promise<ActionResponse> => {
   const validation = recoverPasswordSchema.safeParse(data)
 
   if (!validation.success) {
-    return {
-      success: false,
-      message: 'Invalid data',
-    }
+    throw new CustomError('Invalid data')
   }
 
   const { email } = validation.data
@@ -22,10 +26,7 @@ export const recoveryPassword = async (data: RecoverPasswordData): Promise<Actio
   try {
     const existingUser = await getUserByEmail(normalizedEmail)
     if (!existingUser) {
-      return {
-        success: false,
-        message: 'User not found',
-      }
+      throw new CustomError('User not found')
     }
     const verificationToken = await generateResetPasswordToken(normalizedEmail)
 
@@ -35,7 +36,10 @@ export const recoveryPassword = async (data: RecoverPasswordData): Promise<Actio
       success: true,
       message: 'Email sent successfully',
     }
-  } catch {
+  } catch (error) {
+    if (error instanceof CustomError) {
+      throw new Error(error.message)
+    }
     // TODO handle error ADD SENTRY
     throw new Error('Something went wrong. Please try again later.')
   }

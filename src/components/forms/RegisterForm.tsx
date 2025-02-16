@@ -13,7 +13,7 @@ import { Input, InputPassword } from '@/components/ui/input'
 import { IconLogin2 } from '@tabler/icons-react'
 
 import { register } from '@/actions/register'
-import { registerSchema } from '@/schemas'
+import { registerSchema } from '@/server/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'

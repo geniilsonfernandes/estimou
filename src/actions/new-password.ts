@@ -3,7 +3,7 @@
 import { getPasswordResetTokenByToken } from '@/data/recovery-token'
 import { getUserByEmail } from '@/data/user'
 import { db } from '@/lib/db'
-import { CreateNewPasswordData, createNewPasswordSchema } from '@/schemas'
+import { CreateNewPasswordData, createNewPasswordSchema } from '@/server/schemas'
 import bcrypt from 'bcryptjs'
 import { ActionResponse } from './types'
 
@@ -23,7 +23,6 @@ export const newPassword = async (data: {
   }
 
   console.log(token)
-  
 
   const existingToken = await getPasswordResetTokenByToken(token)
 
@@ -52,7 +51,6 @@ export const newPassword = async (data: {
     }
   }
 
-  // this is a new password
   const { password } = validation.data
 
   const hashedPassword = await bcrypt.hash(password, 10)

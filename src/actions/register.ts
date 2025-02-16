@@ -4,7 +4,7 @@ import { getUserByEmail } from '@/data/user'
 import { db } from '@/lib/db'
 import { sendVerificationEmail } from '@/lib/mail'
 import { generateVerificationToken } from '@/lib/tokens'
-import { type RegisterData, registerSchema } from '@/schemas'
+import { type RegisterData, registerSchema } from '@/server/schemas'
 import bcrypt from 'bcryptjs'
 import { ActionResponse } from './types'
 

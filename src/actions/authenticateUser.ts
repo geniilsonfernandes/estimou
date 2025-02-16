@@ -4,12 +4,12 @@ import { getUserByEmail } from '@/data/user'
 import { sendVerificationEmail } from '@/lib/mail'
 import { generateVerificationToken } from '@/lib/tokens'
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes'
-import { loginSchema, type LoginData } from '@/schemas'
+import { loginSchema, type LoginData } from '@/server/schemas'
 import { signIn } from '@/utils/auth'
 import { AuthError } from 'next-auth'
 import { ActionResponse } from './types'
 
-export const login = async (data: LoginData): Promise<ActionResponse> => {
+export const authenticateUser = async (data: LoginData): Promise<ActionResponse> => {
   const validation = loginSchema.safeParse(data)
 
   if (!validation.success) {
