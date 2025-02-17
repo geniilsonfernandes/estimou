@@ -12,7 +12,7 @@ Next.js, React, React Hook Form, ShadCN, Tailwind CSS, Resend, Supabase, Prisma,
 
 ## ✨ Features 
 
-- [ ] Autenticação de usuário (em andamento)
+- [x] Autenticação de usuário
 - [ ] Criação de orçamentos dinâmicos
 - [ ] Salvamento e edição de orçamentos
 - [ ] Exportação em PDF
