@@ -1,6 +1,5 @@
 'use client'
 
-import { authenticateUser } from '@/actions/authenticateUser'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -12,7 +11,7 @@ import {
 } from '@/components/ui/form'
 import { Input, InputPassword } from '@/components/ui/input'
 import { useDisclosure } from '@/hooks/useDisclosure'
-
+import { authenticateUser } from '@/server/actions/authenticate-user'
 import { loginSchema } from '@/server/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { IconLogin2 } from '@tabler/icons-react'
@@ -22,11 +21,6 @@ import { z } from 'zod'
 import { Snackbar } from '../Snackbar/Snackbar'
 import Modal from '../ui/modal'
 import { RecoveryForm } from './RecoveryForm'
-
-const ACCOUNT_NOT_LINKED = 'OAuthAccountNotLinked'
-const AUTH_ERROS_MESSAGES = {
-  [ACCOUNT_NOT_LINKED]: 'Esse email já está vinculado a outra conta!',
-}
 
 export const LoginForm = () => {
   const [opened, { open, close }] = useDisclosure()
@@ -50,9 +44,10 @@ export const LoginForm = () => {
   const onSubmit = (data: z.infer<typeof loginSchema>) => {
     loginMutation(data)
   }
+
   return (
     <>
-      <Modal isOpen={opened} onClose={close} title="Forget Password" size="sm">
+      <Modal isOpen={opened} onClose={close} title="Recuperar Senha" size="sm">
         <RecoveryForm onClose={close} />
       </Modal>
 
@@ -84,7 +79,7 @@ export const LoginForm = () => {
                 >
                   Esqueceu sua senha?
                 </button>
-                <FormLabel>Password</FormLabel>
+                <FormLabel>Senha</FormLabel>
                 <FormControl>
                   <InputPassword placeholder="Entre com sua senha" {...field} />
                 </FormControl>
@@ -103,7 +98,7 @@ export const LoginForm = () => {
 
           <Button isLoading={isPending} type="submit" className="mt-4 w-full" disabled={isPending}>
             <IconLogin2 />
-            Login
+            Entrar
           </Button>
         </form>
       </Form>

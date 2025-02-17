@@ -31,7 +31,7 @@ export const Wrapper: React.FC<AuthFormWrapperProps> = ({
       <Link href="/" passHref>
         <Logo />
       </Link>
-      <div className="flex-1 space-y-6 pt-8">
+      <div className="animate-fadeinup flex-1 space-y-6 pt-8">
         <FormHeader title={title} subtitle={subtitle} />
         {children}
         {!hiddenSocialLogin && <SocialLoginButton />}

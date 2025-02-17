@@ -1,6 +1,6 @@
 'use client'
 
-import { recoveryPassword } from '@/actions/recovery-password'
+import { recoveryPassword } from '@/server/actions/recovery-password'
 import { RecoverPasswordData, recoverPasswordSchema } from '@/server/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
@@ -11,6 +11,7 @@ import { SuccessFeedback } from '../SuccessFeedback/SuccessFeedback'
 import { Button } from '../ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
 import { Input } from '../ui/input'
+import { FormHeader } from './auth/FormHeader'
 
 const emailProviders: Record<string, string> = {
   'gmail.com': 'https://mail.google.com/',
@@ -70,17 +71,17 @@ export const RecoveryForm: React.FC<RecoveryFormProps> = ({ onClose }) => {
           )}
 
           <Button className="w-full" variant="ghost" onClick={onClose}>
-            Skip, I'll check later
+            Ok, Eu vou verificar mais tarde
           </Button>
         </div>
         <p className="mt-8 text-center text-sm text-muted-foreground">
-          Didn't receive the email?{' '}
+          Ainda não recebeu o email?
           <span
             role="button"
             className="cursor-pointer text-brand-600 hover:underline"
             onClick={() => recoveryPasswordMutation({ email: form.getValues('email') })}
           >
-            Send again
+            Enviar novamente
           </span>
         </p>
       </SuccessFeedback>
@@ -93,12 +94,10 @@ export const RecoveryForm: React.FC<RecoveryFormProps> = ({ onClose }) => {
 
       {!isSuccess && (
         <>
-          <div className="my-4">
-            <h1 className="text-lg font-semibold">Forget Your Password?</h1>
-            <p className="text-sm text-muted-foreground">
-              Enter your email and we will send you instructions to reset your password.
-            </p>
-          </div>
+          <FormHeader
+            title="Esqueci minha senha"
+            subtitle="Por favor, informe seu email e nós lhe enviaremos instruções para redefinir sua senha."
+          />
 
           <Form {...form}>
             <form className="w-full" onSubmit={form.handleSubmit(onSubmit)}>
@@ -128,7 +127,7 @@ export const RecoveryForm: React.FC<RecoveryFormProps> = ({ onClose }) => {
                   disabled={isPending}
                 >
                   <Send />
-                  Send Instructions
+                  Enviar Instruções
                 </Button>
               </div>
             </form>

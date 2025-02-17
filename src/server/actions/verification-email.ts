@@ -3,38 +3,25 @@
 import { getUserByEmail } from '@/data/user'
 import { getVerificationTokenByToken } from '@/data/verification-token'
 import { db } from '@/lib/db'
+import { ActionResponse } from './types'
 
-/**
- * verify a token provided by the user and update the user's email if the token is valid
- *
- * @param {string} token
- * @returns {Promise<{ error?: string, success?: string }>}
- */
-export const newVerification = async (
-  token: string
-): Promise<{ error?: string; success?: string }> => {
+export const verificationEmail = async (token: string): Promise<ActionResponse> => {
   const existingToken = await getVerificationTokenByToken(token)
 
   if (!existingToken) {
-    return {
-      error: 'Token not found.',
-    }
+    throw new Error('Token not found.')
   }
 
   const checkIfTokenExpired = new Date(existingToken.expires) < new Date()
 
   if (checkIfTokenExpired) {
-    return {
-      error: 'Token expired.',
-    }
+    throw new Error('Token expired.')
   }
 
   const userExists = await getUserByEmail(existingToken.email)
 
   if (!userExists) {
-    return {
-      error: 'User not found.',
-    }
+    throw new Error('User not found.')
   }
 
   await db.user.update({
@@ -54,6 +41,7 @@ export const newVerification = async (
   })
 
   return {
-    success: 'email verified!',
+    success: true,
+    message: 'Email verified successfully',
   }
 }

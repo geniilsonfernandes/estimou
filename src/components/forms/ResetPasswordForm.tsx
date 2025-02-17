@@ -1,6 +1,6 @@
 'use client'
 
-import { newPassword } from '@/actions/new-password'
+import { newPassword } from '@/server/actions/new-password'
 import { CreateNewPasswordData, createNewPasswordSchema } from '@/server/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
@@ -12,6 +12,7 @@ import { SuccessFeedback } from '../SuccessFeedback/SuccessFeedback'
 import { Button } from '../ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
 import { InputPassword } from '../ui/input'
+import { FormHeader } from './auth/FormHeader'
 
 export const ResetPasswordForm = () => {
   const searchParams = useSearchParams()
@@ -40,29 +41,29 @@ export const ResetPasswordForm = () => {
   }
 
   return (
-    <div className="relative inline-flex flex-col rounded-md border border-gray-100 bg-white p-6 md:w-1/3">
-      <Link href="/" passHref>
-        <Logo />
-      </Link>
+    <div className="relative inline-flex w-full max-w-md flex-col rounded-md border border-gray-100 bg-white p-6">
       {isSuccess && (
         <SuccessFeedback
-          title="Password reset successfully!"
-          subtitle="Your password has been successfully changed, click below to continue."
+          title="Senha alterada com sucesso"
+          subtitle="Voce pode ir para o login, clique no botao abaixo para fazer login."
         >
           <div className="flex w-full flex-col gap-2 pt-4">
             <Link href="/auth/login" passHref>
-              <Button className="w-full">Continue</Button>
+              <Button className="w-full">Ir para o login</Button>
             </Link>
           </div>
         </SuccessFeedback>
       )}
       {!isSuccess && (
         <>
+          <Link href="/" passHref>
+            <Logo />
+          </Link>
           <div className="my-8">
-            <h1 className="text-lg font-semibold">Criar uma nova senha</h1>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Escolha uma nova senha para sua conta.
-            </p>
+            <FormHeader
+              title="Criar uma nova senha"
+              subtitle="Escolha uma nova senha para sua conta."
+            />
           </div>
           <Form {...form}>
             <form className="flex w-full flex-col gap-4" onSubmit={form.handleSubmit(onSubmit)}>
@@ -71,7 +72,7 @@ export const ResetPasswordForm = () => {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>Senha</FormLabel>
                     <FormControl>
                       <InputPassword disabled={isPending} placeholder="*******" {...field} />
                     </FormControl>
@@ -84,7 +85,7 @@ export const ResetPasswordForm = () => {
                 name="confirmPassword"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Confirm Password</FormLabel>
+                    <FormLabel>Confirmar Senha</FormLabel>
                     <FormControl>
                       <InputPassword disabled={isPending} placeholder="*******" {...field} />
                     </FormControl>

@@ -6,15 +6,12 @@ import { sendVerificationEmail } from '@/lib/mail'
 import { generateVerificationToken } from '@/lib/tokens'
 import { type RegisterData, registerSchema } from '@/server/schemas'
 import bcrypt from 'bcryptjs'
-import { ActionResponse } from './types'
+import { ActionResponse, CustomError } from './types'
 
-export const register = async (data: RegisterData): Promise<ActionResponse> => {
+export const registerUser = async (data: RegisterData): Promise<ActionResponse> => {
   const validation = registerSchema.safeParse(data)
   if (!validation.success) {
-    return {
-      success: false,
-      message: 'Invalid data',
-    }
+    throw new CustomError('Invalid data')
   }
 
   const { email, password, name } = validation.data
@@ -23,10 +20,7 @@ export const register = async (data: RegisterData): Promise<ActionResponse> => {
   try {
     const existingUser = await getUserByEmail(normalizedEmail)
     if (existingUser) {
-      return {
-        success: false,
-        message: 'User already exists',
-      }
+      throw new CustomError('User already exists')
     }
 
     const hashedPassword = await bcrypt.hash(password, 10)
@@ -46,11 +40,12 @@ export const register = async (data: RegisterData): Promise<ActionResponse> => {
       success: true,
       message: 'Confirm your email address',
     }
-  } catch {
+  } catch (error) {
     // TODO handle error ADD SENTRY
-    return {
-      success: false,
-      message: 'Something went wrong. Please try again later.',
+    if (error instanceof CustomError) {
+      throw new Error(error.message)
     }
+    // TODO handle error ADD SENTRY
+    throw new Error('Something went wrong. Please try again later.')
   }
 }

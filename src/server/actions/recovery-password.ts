@@ -4,14 +4,9 @@ import { getUserByEmail } from '@/data/user'
 import { sendRecoveryPasswordEmail } from '@/lib/mail'
 import { generateResetPasswordToken } from '@/lib/tokens'
 import { RecoverPasswordData, recoverPasswordSchema } from '@/server/schemas'
-import { ActionResponse } from './types'
+import { ActionResponse, CustomError } from './types'
 
-class CustomError extends Error {
-  constructor(message: string) {
-    super(message)
-    this.name = 'CustomError'
-  }
-}
+
 
 export const recoveryPassword = async (data: RecoverPasswordData): Promise<ActionResponse> => {
   const validation = recoverPasswordSchema.safeParse(data)

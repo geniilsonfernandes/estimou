@@ -6,6 +6,8 @@ import type { NextAuthConfig } from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
 import Google from 'next-auth/providers/google'
 
+
+
 export default {
   pages: {
     signIn: '/auth/login',
@@ -16,6 +18,7 @@ export default {
       if (account?.provider !== 'credentials') {
         return
       }
+
       if (account?.provider === 'credentials' && user.email) {
         const userExists = await getUserByEmail(user.email)
 
@@ -50,6 +53,7 @@ export default {
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      allowDangerousEmailAccountLinking: true,
     }),
     Credentials({
       async authorize(credentials) {
