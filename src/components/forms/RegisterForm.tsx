@@ -12,7 +12,7 @@ import {
 import { Input, InputPassword } from '@/components/ui/input'
 import { IconLogin2 } from '@tabler/icons-react'
 
-import { register } from '@/actions/register'
+import { registerUser } from '@/server/actions/register-user'
 import { registerSchema } from '@/server/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
@@ -24,9 +24,11 @@ export const RegisterForm = () => {
   const {
     mutate: registerMutation,
     isPending,
-    data,
+    isSuccess,
+    error,
+    isError,
   } = useMutation({
-    mutationFn: register,
+    mutationFn: registerUser,
   })
 
   const form = useForm<z.infer<typeof registerSchema>>({
@@ -75,10 +77,12 @@ export const RegisterForm = () => {
             </FormItem>
           )}
         />
-        {data?.message && (
+
+        {isError && <Snackbar message={error?.message} variant="error" aria-live="polite" />}
+        {isSuccess && (
           <Snackbar
-            message={data.message}
-            variant={data.success ? 'success' : 'error'}
+            message="Conta criada com sucesso!, Verifique seu email"
+            variant="success"
             aria-live="polite"
           />
         )}

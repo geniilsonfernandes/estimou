@@ -72,7 +72,7 @@ return typeof document !== 'undefined'
               >
                 <X size={16} />
               </motion.button>
-              <div className="space-y-4">{children}</div>
+              <div className="space-y-4 pt-4">{children}</div>
             </motion.div>
           </div>
         )}

@@ -7,43 +7,33 @@ import { DEFAULT_LOGIN_REDIRECT } from '@/routes'
 import { loginSchema, type LoginData } from '@/server/schemas'
 import { signIn } from '@/utils/auth'
 import { AuthError } from 'next-auth'
-import { ActionResponse } from './types'
+import { ActionResponse, CustomError } from './types'
 
 export const authenticateUser = async (data: LoginData): Promise<ActionResponse> => {
   const validation = loginSchema.safeParse(data)
 
   if (!validation.success) {
-    return {
-      success: false,
-      message: 'Invalid data',
-    }
-  }
-
-  const { email, password } = validation.data
-  const normalizedEmail = email.toLowerCase()
-
-  const existingUser = await getUserByEmail(email)
-
-  if (!existingUser || !existingUser?.email || !existingUser.password) {
-    return {
-      success: false,
-      message: 'User not found',
-    }
-  }
-
-  if (!existingUser.emailVerified) {
-    await generateVerificationToken(existingUser.email)
-
-    const verificationToken = await generateVerificationToken(normalizedEmail)
-
-    await sendVerificationEmail(normalizedEmail, verificationToken.token)
-    return {
-      success: false,
-      message: 'User not verified, check your email to verify your account!',
-    }
+    throw new CustomError('Invalid data')
   }
 
   try {
+    const { email, password } = validation.data
+    const normalizedEmail = email.toLowerCase()
+
+    const existingUser = await getUserByEmail(email)
+
+    if (!existingUser || !existingUser?.email || !existingUser.password) {
+      throw new CustomError('User not found')
+    }
+
+    if (!existingUser.emailVerified) {
+      await generateVerificationToken(existingUser.email)
+      const verificationToken = await generateVerificationToken(normalizedEmail)
+      await sendVerificationEmail(normalizedEmail, verificationToken.token)
+
+      throw new CustomError('User not verified, check your email to verify your account!')
+    }
+
     await signIn('credentials', { email, password, redirectTo: DEFAULT_LOGIN_REDIRECT })
 
     return {
@@ -51,7 +41,9 @@ export const authenticateUser = async (data: LoginData): Promise<ActionResponse>
       message: 'Login successful',
     }
   } catch (error) {
-    // TODO handle error ADD SENTRY
+    if (error instanceof CustomError) {
+      throw new Error(error.message)
+    }
     if (error instanceof AuthError) {
       switch (error.type) {
         case 'CredentialsSignin':
@@ -66,6 +58,8 @@ export const authenticateUser = async (data: LoginData): Promise<ActionResponse>
           }
       }
     }
-    throw error
+
+    // TODO handle error ADD SENTRY
+    throw new Error('Something went wrong. Please try again later.')
   }
 }

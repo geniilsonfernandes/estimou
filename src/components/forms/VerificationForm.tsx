@@ -2,65 +2,76 @@
 
 import { useSearchParams } from 'next/navigation'
 
-import { newVerification } from '@/actions/new-verification'
-import { AlertCircle } from 'lucide-react'
-import { useCallback, useEffect, useState } from 'react'
+import { verificationEmail } from '@/server/actions/verification-email'
+import { useMutation } from '@tanstack/react-query'
+import { ArrowLeft } from 'lucide-react'
+import Link from 'next/link'
+import { useCallback, useEffect } from 'react'
 import { Loader } from '../Loader/Loader'
-import { Alert, AlertDescription } from '../ui/alert'
+import { Logo } from '../Logo'
+import { Snackbar } from '../Snackbar/Snackbar'
+import { SuccessFeedback } from '../SuccessFeedback/SuccessFeedback'
+import { Button } from '../ui/button'
 import { FormHeader } from './auth/FormHeader'
 
 export const VerificationForm = () => {
-  const [success, setSuccess] = useState<string>()
-  const [error, setError] = useState<string>()
+  const {
+    mutate: verificationTokenMutation,
+    isPending,
+    error,
+    isError,
+    isSuccess,
+  } = useMutation({
+    mutationFn: verificationEmail,
+  })
   const searchParams = useSearchParams()
   const token = searchParams.get('token')
 
   const onVerify = useCallback(async () => {
-    if (success || error) {
-      return
+    if (token) {
+      verificationTokenMutation(token)
     }
-  
-
-    if (!token) {
-      return setError('Token não encontrado.')
-    }
-
-    newVerification(token).then((r) => {
-      if (r?.error) {
-        setError(r.error)
-      }
-      if (r?.success) {
-        setSuccess(r.success)
-      }
-    })
-  }, [token, success, error])
+  }, [token, verificationTokenMutation])
 
   useEffect(() => {
     onVerify()
   }, [onVerify])
 
   return (
-    <div className="text-center">
-      <FormHeader
-        title="Verificando seu e-mail"
-        subtitle="
-            Verifique seu e-mail para finalizar o processo de cadastro."
-      />
-      <div className="mb-4 mt-8 flex items-center justify-center gap-4">
-        {error && (
-          <Alert className="my-2" variant="destructive">
-            <AlertCircle className="mr-2 h-4 w-4" />
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
-        )}
-        {success && (
-          <Alert className="my-2" variant="success">
-            <AlertCircle className="mr-2 h-4 w-4" />
-            <AlertDescription>{success}</AlertDescription>
-          </Alert>
-        )}
-        {!error && !success && <Loader color="black" size="lg" />}
-      </div>
+    <div className="relative inline-flex w-full max-w-md flex-col gap-8 rounded-md border border-gray-100 bg-white p-6">
+      {isSuccess && (
+        <SuccessFeedback
+          title="Email verificado com sucesso"
+          subtitle="Seu email foi verificado com sucesso, agora você pode entrar em sua conta."
+        >
+          <div className="flex w-full flex-col gap-2 pt-4">
+            <Link href="/auth/login" passHref>
+              <Button className="w-full">Ir para o login</Button>
+            </Link>
+          </div>
+        </SuccessFeedback>
+      )}
+      {!isSuccess && (
+        <>
+          <Logo />
+          <FormHeader
+            title="Verificando seu e-mail"
+            subtitle="
+        Verifique seu e-mail para finalizar o processo de cadastro."
+          />
+          <div className="mb-4 mt-8 flex items-center justify-center gap-4">
+            {isError && <Snackbar message={error?.message} variant="error" aria-live="polite" />}
+
+            {isPending && <Loader color="black" size="lg" />}
+          </div>
+
+          <Link href="/auth/login" passHref>
+            <Button className="w-full" variant="ghost">
+              <ArrowLeft className="h-4 w-4" /> Voltar para o login
+            </Button>
+          </Link>
+        </>
+      )}
     </div>
   )
 }

@@ -5,7 +5,7 @@ import { AlertCircle, AlertTriangle, CheckCircle, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 const snackbarVariants = cva(
-  'my-2 flex items-center rounded-md border p-2 px-4 text-sm font-medium relative',
+  'my-2 flex items-center w-full rounded-md border p-2 px-4 text-sm font-medium relative',
   {
     variants: {
       variant: {

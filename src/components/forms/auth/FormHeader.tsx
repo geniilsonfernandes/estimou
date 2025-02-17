@@ -1,7 +1,7 @@
 type FormHeaderProps = {
   title: string
   subtitle: string
-}
+} 
 
 export const FormHeader: React.FC<FormHeaderProps> = ({ title, subtitle }) => {
   return (

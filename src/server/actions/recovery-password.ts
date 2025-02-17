@@ -4,14 +4,7 @@ import { getUserByEmail } from '@/data/user'
 import { sendRecoveryPasswordEmail } from '@/lib/mail'
 import { generateResetPasswordToken } from '@/lib/tokens'
 import { RecoverPasswordData, recoverPasswordSchema } from '@/server/schemas'
-import { ActionResponse } from './types'
-
-class CustomError extends Error {
-  constructor(message: string) {
-    super(message)
-    this.name = 'CustomError'
-  }
-}
+import { ActionResponse, CustomError } from './types'
 
 export const recoveryPassword = async (data: RecoverPasswordData): Promise<ActionResponse> => {
   const validation = recoverPasswordSchema.safeParse(data)
@@ -20,10 +13,9 @@ export const recoveryPassword = async (data: RecoverPasswordData): Promise<Actio
     throw new CustomError('Invalid data')
   }
 
-  const { email } = validation.data
-  const normalizedEmail = email.toLowerCase()
-
   try {
+    const { email } = validation.data
+    const normalizedEmail = email.toLowerCase()
     const existingUser = await getUserByEmail(normalizedEmail)
     if (!existingUser) {
       throw new CustomError('User not found')
