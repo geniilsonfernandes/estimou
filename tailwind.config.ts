@@ -12,8 +12,19 @@ export default {
     extend: {
       animation: {
         upDown: 'upDown 2s ease-in-out infinite',
+        fadeinup: 'fade-in-up .3s ease-out  1',
       },
       keyframes: {
+        'fade-in-up': {
+          '0%': {
+            opacity: '0',
+            transform: 'translate3d(0, -20px, 0)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translate3d(0, 0, 0)',
+          },
+        },
         upDown: {
           '0%': { transform: 'translateY(-5px)', opacity: '.5' },
           '25%': { transform: 'translateY(5px)', opacity: '1' },
