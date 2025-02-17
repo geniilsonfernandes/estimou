@@ -29,6 +29,8 @@ export const LoginForm = () => {
     mutate: loginMutation,
     isPending,
     data,
+    error,
+    isError,
   } = useMutation({
     mutationFn: authenticateUser,
   })
@@ -94,6 +96,10 @@ export const LoginForm = () => {
               variant={data.success ? 'success' : 'error'}
               aria-live="polite"
             />
+          )}
+
+          {isError && error instanceof Error && (
+            <Snackbar message={error.message} variant="error" />
           )}
 
           <Button isLoading={isPending} type="submit" className="mt-4 w-full" disabled={isPending}>
