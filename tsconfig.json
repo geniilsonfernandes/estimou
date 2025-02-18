@@ -24,6 +24,12 @@
       "@actions/*": ["./src/server/actions"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/components/forms/RecoveryForm.jsx"
+  ],
   "exclude": ["node_modules"]
 }

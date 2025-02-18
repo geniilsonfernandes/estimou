@@ -66,7 +66,7 @@ export const Analytics: React.FC = () => {
       <div className="my-6 flex items-center gap-2">
         {['2024', '2025'].map((year) => (
           <Button
-            size={'sm'}
+            size="sm"
             key={year}
             variant={year === '2025' ? 'default' : 'outline'}
             className="cursor-pointer rounded-full text-sm"

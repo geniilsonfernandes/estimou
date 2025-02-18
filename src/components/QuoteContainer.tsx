@@ -1,6 +1,7 @@
 'use client'
 
 import { cn } from '@/lib/utils'
+import { User } from 'lucide-react'
 
 type QuoteProps = React.HTMLAttributes<HTMLDivElement>
 
@@ -18,17 +19,19 @@ const Quote: React.FC<QuoteProps> = (props) => {
           &ldquo;This library has saved me countless hours of work and helped me deliver stunning
           designs to my clients faster than ever before.&rdquo;
         </p>
-        <footer className="font-exo text-sm opacity-50">Sofia Davis</footer>
+        <footer className="font-exo text-sm opacity-50">
+          <User size={16} />
+          Sofia Davis
+        </footer>
       </blockquote>
     </div>
   )
 }
 
 const QuoteContainer = () => {
-
   return (
     <div className="group relative z-20 flex flex-1 flex-col justify-end gap-4 text-white [&_div]:absolute hover:[&_div]:block">
-      <Quote className="scale-[.90] bottom-[24px] opacity-30 transition-all duration-300 ease-out group-hover:bottom-[220px] group-hover:scale-[1] group-hover:opacity-100" />
+      <Quote className="bottom-[24px] scale-[.90] opacity-30 transition-all duration-300 ease-out group-hover:bottom-[220px] group-hover:scale-[1] group-hover:opacity-100" />
       <Quote className="bottom-[12px] scale-[.95] opacity-50 transition-all duration-300 ease-out group-hover:bottom-[110px] group-hover:scale-[1] group-hover:opacity-100" />
       <Quote className="bottom-0" />
     </div>
