@@ -9,8 +9,8 @@ type SuccessFeedbackProps = {
   title?: string
   subtitle?: string
   children?: React.ReactNode
-  color?: "brand" | "green"
-}
+  color?: 'brand' | 'green'
+} 
 export const SuccessFeedback: React.FC<SuccessFeedbackProps> = ({
   title,
   subtitle,

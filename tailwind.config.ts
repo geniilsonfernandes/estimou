@@ -36,6 +36,7 @@ export default {
       fontFamily: {
         exo: ['var(--font-exo)', 'sans-serif'],
       },
+
       container: {
         center: true,
         padding: '2rem',
@@ -106,6 +107,9 @@ export default {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
+      },
+      transitionTimingFunction: {
+        'custom-bezier': '.78, .18, .99, .6', // Adicionando sua função cubic-bezier
       },
     },
     plugins: [tailwindcssAnimate],

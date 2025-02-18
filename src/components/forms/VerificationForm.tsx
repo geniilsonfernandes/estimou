@@ -38,7 +38,7 @@ export const VerificationForm = () => {
   }, [onVerify])
 
   return (
-    <div className="relative inline-flex w-full max-w-md flex-col gap-8 rounded-md border border-gray-100 bg-white p-6">
+    <div className="s relative inline-flex w-full max-w-md flex-col gap-8">
       {isSuccess && (
         <SuccessFeedback
           title="Email verificado com sucesso"

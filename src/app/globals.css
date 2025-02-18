@@ -105,6 +105,11 @@ body {
     @apply bg-gradient-to-br from-brand-500 to-brand-700;
   }
 
+  
+  .ease-out {
+    transition-timing-function: cubic-bezier(1,.05,.26,.99);
+  }
+
   .btn-steel-900 {
     @apply border bg-gradient-to-b from-slate-600 to-slate-800 transition-colors duration-300 hover:from-slate-600 hover:to-slate-700;
   }
@@ -131,5 +136,9 @@ body {
 
   .container-flex {
     @apply container flex;
+  }
+
+  .auth-layout {
+    @apply rounded-lg border border-gray-200 bg-slate-50/10 p-4 shadow-md shadow-slate-200/50 backdrop-blur-[2px] sm:p-8;
   }
 }

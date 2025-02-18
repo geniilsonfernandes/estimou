@@ -21,6 +21,7 @@ import { z } from 'zod'
 import { Snackbar } from '../Snackbar/Snackbar'
 import Modal from '../ui/modal'
 import { RecoveryForm } from './RecoveryForm'
+import { AuthFormLayout } from './auth/AuthFormLayout'
 
 export const LoginForm = () => {
   const [opened, { open, close }] = useDisclosure()
@@ -48,7 +49,13 @@ export const LoginForm = () => {
   }
 
   return (
-    <>
+    <AuthFormLayout
+      callToActionText="Não possui uma conta?"
+      callToActionLink="/auth/register"
+      callToActionLabel="Cadastre-se"
+      title="Login no Estimou"
+      subtitle="Insira seu e-mail abaixo para entrar em sua conta"
+    >
       <Modal isOpen={opened} onClose={close} title="Recuperar Senha" size="sm">
         <RecoveryForm onClose={close} />
       </Modal>
@@ -108,6 +115,6 @@ export const LoginForm = () => {
           </Button>
         </form>
       </Form>
-    </>
+    </AuthFormLayout>
   )
 }

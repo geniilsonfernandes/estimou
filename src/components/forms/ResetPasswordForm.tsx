@@ -7,12 +7,11 @@ import { useMutation } from '@tanstack/react-query'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
-import { Logo } from '../Logo'
 import { SuccessFeedback } from '../SuccessFeedback/SuccessFeedback'
 import { Button } from '../ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
 import { InputPassword } from '../ui/input'
-import { FormHeader } from './auth/FormHeader'
+import { AuthFormLayout } from './auth/AuthFormLayout'
 
 export const ResetPasswordForm = () => {
   const searchParams = useSearchParams()
@@ -41,30 +40,29 @@ export const ResetPasswordForm = () => {
   }
 
   return (
-    <div className="relative inline-flex w-full max-w-md flex-col rounded-md border border-gray-100 bg-white p-6">
+    <>
       {isSuccess && (
-        <SuccessFeedback
-          title="Senha alterada com sucesso"
-          subtitle="Voce pode ir para o login, clique no botao abaixo para fazer login."
-        >
-          <div className="flex w-full flex-col gap-2 pt-4">
-            <Link href="/auth/login" passHref>
-              <Button className="w-full">Ir para o login</Button>
-            </Link>
-          </div>
-        </SuccessFeedback>
+        <div className="auth-layout">
+          <SuccessFeedback
+            title="Senha alterada com sucesso"
+            subtitle="Voce pode ir para o login, clique no botao abaixo para fazer login."
+          >
+            <div className="flex w-full flex-col gap-2 pt-4">
+              <Link href="/auth/login" passHref>
+                <Button className="w-full">Ir para o login</Button>
+              </Link>
+            </div>
+          </SuccessFeedback>
+        </div>
       )}
       {!isSuccess && (
-        <>
-          <Link href="/" passHref>
-            <Logo />
-          </Link>
-          <div className="my-8">
-            <FormHeader
-              title="Criar uma nova senha"
-              subtitle="Escolha uma nova senha para sua conta."
-            />
-          </div>
+        <AuthFormLayout
+          isCallToActionHidden
+          isSocialLoginHidden
+          title="Criar uma nova senha"
+          subtitle="Escolha uma nova senha para sua conta."
+          className="max-w-md"
+        >
           <Form {...form}>
             <form className="flex w-full flex-col gap-4" onSubmit={form.handleSubmit(onSubmit)}>
               <FormField
@@ -106,8 +104,8 @@ export const ResetPasswordForm = () => {
               </div>
             </form>
           </Form>
-        </>
+        </AuthFormLayout>
       )}
-    </div>
+    </>
   )
 }

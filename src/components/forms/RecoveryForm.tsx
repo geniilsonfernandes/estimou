@@ -106,7 +106,7 @@ export const RecoveryForm: React.FC<RecoveryFormProps> = ({ onClose }) => {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email Address</FormLabel>
+                    <FormLabel>Email</FormLabel>
                     <FormControl>
                       <Input disabled={isPending} placeholder="gzLbI@example.com" {...field} />
                     </FormControl>

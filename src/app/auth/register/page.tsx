@@ -1,4 +1,3 @@
-import { Wrapper } from '@/components/forms/auth/Wrapper'
 import { RegisterForm } from '@/components/forms/RegisterForm'
 
 export const metadata = {
@@ -7,16 +6,8 @@ export const metadata = {
 
 export default function Register() {
   return (
-    <div className="container flex min-h-screen justify-center gap-8 bg-gray-50 p-8">
-      <Wrapper
-        title="Cadastre-se no Estimou"
-        subtitle="Insira seu e-mail abaixo para entrar em sua conta"
-        callToAction="Já possui uma conta?"
-        href="/auth/login"
-        linkText="Login"
-      >
-        <RegisterForm />
-      </Wrapper>
+    <div className="container flex min-h-screen justify-center gap-4 p-4 sm:p-8">
+      <RegisterForm />
       <div className="brand-gradient hidden flex-1 rounded-lg p-8 lg:block">
         <div className="relative z-20 mt-auto text-brand-50">
           <blockquote className="space-y-2">

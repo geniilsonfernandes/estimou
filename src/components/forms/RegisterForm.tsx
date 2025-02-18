@@ -19,6 +19,7 @@ import { useMutation } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Snackbar } from '../Snackbar/Snackbar'
+import { AuthFormLayout } from './auth/AuthFormLayout'
 
 export const RegisterForm = () => {
   const {
@@ -49,48 +50,56 @@ export const RegisterForm = () => {
   }
 
   return (
-    <Form {...form}>
-      <form className="my-8 flex flex-col gap-2" onSubmit={form.handleSubmit(onSubmit)}>
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input placeholder="gzLbI@example.com" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Senha</FormLabel>
-              <FormControl>
-                <InputPassword placeholder="Entre com sua senha" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        {isError && <Snackbar message={error?.message} variant="error" aria-live="polite" />}
-        {isSuccess && (
-          <Snackbar
-            message="Conta criada com sucesso!, Verifique seu email"
-            variant="success"
-            aria-live="polite"
+    <AuthFormLayout
+      title="Cadastre-se no Estimou"
+      subtitle="Insira seu e-mail abaixo para entrar em sua conta"
+      callToActionLabel="Login"
+      callToActionLink="/auth/login"
+      callToActionText="Já possui uma conta?"
+    >
+      <Form {...form}>
+        <form className="my-8 flex flex-col gap-2" onSubmit={form.handleSubmit(onSubmit)}>
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input placeholder="gzLbI@example.com" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-        )}
-        <Button type="submit" isLoading={isPending} className="mt-4 w-full" disabled={isPending}>
-          <IconLogin2 />
-          Criar Conta
-        </Button>
-      </form>
-    </Form>
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Senha</FormLabel>
+                <FormControl>
+                  <InputPassword placeholder="Entre com sua senha" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {isError && <Snackbar message={error?.message} variant="error" aria-live="polite" />}
+          {isSuccess && (
+            <Snackbar
+              message="Conta criada com sucesso!, Verifique seu email"
+              variant="success"
+              aria-live="polite"
+            />
+          )}
+          <Button type="submit" isLoading={isPending} className="mt-4 w-full" disabled={isPending}>
+            <IconLogin2 />
+            Criar Conta
+          </Button>
+        </form>
+      </Form>
+    </AuthFormLayout>
   )
 }
