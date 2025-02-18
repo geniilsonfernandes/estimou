@@ -15,6 +15,8 @@ type AuthFormLayoutProps = {
   callToActionText?: string
   callToActionLink?: string
   callToActionLabel?: string
+  hiddenLogo?: boolean
+  isCard?: boolean
 } & React.HTMLAttributes<HTMLDivElement>
 
 export const AuthFormLayout: React.FC<AuthFormLayoutProps> = ({
@@ -26,13 +28,22 @@ export const AuthFormLayout: React.FC<AuthFormLayoutProps> = ({
   title,
   isCallToActionHidden = false,
   isSocialLoginHidden = false,
+  hiddenLogo,
+  isCard = true,
   ...props
 }) => {
   return (
-    <div className={cn("auth-layout flex w-full flex-1 flex-col justify-between", props.className)}>
-      <Link href="/" passHref>
-        <Logo />
-      </Link>
+    <div
+      className={cn('flex w-full flex-1 flex-col justify-between', props.className, {
+        'auth-layout': isCard,
+      })}
+    >
+      {!hiddenLogo && (
+        <Link href="/" passHref>
+          <Logo />
+        </Link>
+      )}
+
       <div className="flex-1 animate-fadeinup space-y-6 pt-8">
         <FormHeader title={title} subtitle={subtitle} />
         {children}

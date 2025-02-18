@@ -57,7 +57,7 @@ export const RecoveryForm: React.FC<RecoveryFormProps> = ({ onClose }) => {
     }
 
     return (
-      <div className="auth-layout w-full max-w-md">
+      <div className="w-full max-w-md">
         <SuccessFeedback
           color="brand"
           title="Check your email"
@@ -100,7 +100,9 @@ export const RecoveryForm: React.FC<RecoveryFormProps> = ({ onClose }) => {
           subtitle="Por favor, informe seu email e nós lhe enviaremos instruções para redefinir sua senha."
           isCallToActionHidden
           isSocialLoginHidden
-          className="w-full max-w-md"
+          className="w-full max-w-md border-none"
+          hiddenLogo
+          isCard={false}
         >
           <Form {...form}>
             <form className="w-full" onSubmit={form.handleSubmit(onSubmit)}>
