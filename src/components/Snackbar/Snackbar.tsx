@@ -23,6 +23,7 @@ const snackbarVariants = cva(
 type SnackbarProps = {
   title?: string
   message?: string
+  hiddenCloseButton?: boolean
 } & VariantProps<typeof snackbarVariants> &
   React.HTMLAttributes<HTMLDivElement>
 
@@ -37,6 +38,7 @@ export const Snackbar: React.FC<SnackbarProps> = ({
   variant = 'success',
   title,
   className,
+  hiddenCloseButton = false,
 }) => {
   const [open, setOpen] = useState(message ? true : false)
 
@@ -72,13 +74,15 @@ export const Snackbar: React.FC<SnackbarProps> = ({
             {title && <div className="font-semibold">{title}</div>}
             <div>{message}</div>
           </div>
-          <button
-            type="button"
-            onClick={handleClose}
-            className="right-2 top-2 ml-auto flex-shrink-0"
-          >
-            <X className="h-4 w-4" />
-          </button>
+          {!hiddenCloseButton && (
+            <button
+              type="button"
+              onClick={handleClose}
+              className="right-2 top-2 ml-auto flex-shrink-0"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          )}
         </motion.div>
       )}
     </AnimatePresence>

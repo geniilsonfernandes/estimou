@@ -8,11 +8,10 @@ import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { useCallback, useEffect } from 'react'
 import { Loader } from '../Loader/Loader'
-import { Logo } from '../Logo'
 import { Snackbar } from '../Snackbar/Snackbar'
 import { SuccessFeedback } from '../SuccessFeedback/SuccessFeedback'
 import { Button } from '../ui/button'
-import { FormHeader } from './auth/FormHeader'
+import { AuthFormLayout } from './auth/AuthFormLayout'
 
 export const VerificationForm = () => {
   const {
@@ -38,7 +37,7 @@ export const VerificationForm = () => {
   }, [onVerify])
 
   return (
-    <div className="s relative inline-flex w-full max-w-md flex-col gap-8">
+    <div>
       {isSuccess && (
         <SuccessFeedback
           title="Email verificado com sucesso"
@@ -52,15 +51,30 @@ export const VerificationForm = () => {
         </SuccessFeedback>
       )}
       {!isSuccess && (
-        <>
-          <Logo />
-          <FormHeader
-            title="Verificando seu e-mail"
-            subtitle="
-        Verifique seu e-mail para finalizar o processo de cadastro."
-          />
-          <div className="mb-4 mt-8 flex items-center justify-center gap-4">
-            {isError && <Snackbar message={error?.message} variant="error" aria-live="polite" />}
+        <AuthFormLayout
+          title="Verificando seu e-mail"
+          subtitle="Para evitar eventuais problemas, verificamos seu e-mail para validar sua conta."
+          isCallToActionHidden
+          isSocialLoginHidden
+          className="w-full max-w-md"
+        >
+          <div className="flex min-h-7 items-center justify-center gap-4 pb-8">
+            {!token && (
+              <Snackbar
+                message="Token de verificação inválido"
+                variant="error"
+                aria-live="polite"
+                hiddenCloseButton
+              />
+            )}
+            {isError && (
+              <Snackbar
+                message={error?.message}
+                variant="error"
+                aria-live="polite"
+                hiddenCloseButton
+              />
+            )}
 
             {isPending && <Loader color="black" size="lg" />}
           </div>
@@ -70,7 +84,7 @@ export const VerificationForm = () => {
               <ArrowLeft className="h-4 w-4" /> Voltar para o login
             </Button>
           </Link>
-        </>
+        </AuthFormLayout>
       )}
     </div>
   )
