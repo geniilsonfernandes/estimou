@@ -11,7 +11,7 @@ import { SuccessFeedback } from '../SuccessFeedback/SuccessFeedback'
 import { Button } from '../ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
 import { Input } from '../ui/input'
-import { FormHeader } from './auth/FormHeader'
+import { AuthFormLayout } from './auth/AuthFormLayout'
 
 const emailProviders: Record<string, string> = {
   'gmail.com': 'https://mail.google.com/',
@@ -57,34 +57,36 @@ export const RecoveryForm: React.FC<RecoveryFormProps> = ({ onClose }) => {
     }
 
     return (
-      <SuccessFeedback
-        color="brand"
-        title="Check your email"
-        icon={<MailCheck strokeWidth={1} size={32} />}
-        subtitle="We sent a password recovery instructions to your email."
-      >
-        <div className="flex w-full flex-col gap-2 pt-4">
-          {domain && (
-            <Button className="w-full" onClick={openEmailApp}>
-              {emailUrl ? `Open ${domain} App` : 'Open your Email'}
-            </Button>
-          )}
+      <div className="auth-layout w-full max-w-md">
+        <SuccessFeedback
+          color="brand"
+          title="Check your email"
+          icon={<MailCheck strokeWidth={1} size={32} />}
+          subtitle="We sent a password recovery instructions to your email."
+        >
+          <div className="flex w-full flex-col gap-2 pt-4">
+            {domain && (
+              <Button className="w-full" onClick={openEmailApp}>
+                {emailUrl ? `Open ${domain} App` : 'Open your Email'}
+              </Button>
+            )}
 
-          <Button className="w-full" variant="ghost" onClick={onClose}>
-            Ok, Eu vou verificar mais tarde
-          </Button>
-        </div>
-        <p className="mt-8 text-center text-sm text-muted-foreground">
-          Ainda não recebeu o email?
-          <span
-            role="button"
-            className="cursor-pointer text-brand-600 hover:underline"
-            onClick={() => recoveryPasswordMutation({ email: form.getValues('email') })}
-          >
-            Enviar novamente
-          </span>
-        </p>
-      </SuccessFeedback>
+            <Button className="w-full" variant="ghost" onClick={onClose}>
+              Ok, Eu vou verificar mais tarde
+            </Button>
+          </div>
+          <p className="mt-8 text-center text-sm text-muted-foreground">
+            Ainda não recebeu o email?
+            <span
+              role="button"
+              className="cursor-pointer text-brand-600 hover:underline"
+              onClick={() => recoveryPasswordMutation({ email: form.getValues('email') })}
+            >
+              Enviar novamente
+            </span>
+          </p>
+        </SuccessFeedback>
+      </div>
     )
   }
 
@@ -93,12 +95,13 @@ export const RecoveryForm: React.FC<RecoveryFormProps> = ({ onClose }) => {
       {isSuccess && successFeedback()}
 
       {!isSuccess && (
-        <>
-          <FormHeader
-            title="Esqueci minha senha"
-            subtitle="Por favor, informe seu email e nós lhe enviaremos instruções para redefinir sua senha."
-          />
-
+        <AuthFormLayout
+          title="Esqueci minha senha"
+          subtitle="Por favor, informe seu email e nós lhe enviaremos instruções para redefinir sua senha."
+          isCallToActionHidden
+          isSocialLoginHidden
+          className="w-full max-w-md"
+        >
           <Form {...form}>
             <form className="w-full" onSubmit={form.handleSubmit(onSubmit)}>
               <FormField
@@ -132,7 +135,7 @@ export const RecoveryForm: React.FC<RecoveryFormProps> = ({ onClose }) => {
               </div>
             </form>
           </Form>
-        </>
+        </AuthFormLayout>
       )}
     </>
   )

@@ -39,16 +39,18 @@ export const VerificationForm = () => {
   return (
     <div>
       {isSuccess && (
-        <SuccessFeedback
-          title="Email verificado com sucesso"
-          subtitle="Seu email foi verificado com sucesso, agora você pode entrar em sua conta."
-        >
-          <div className="flex w-full flex-col gap-2 pt-4">
-            <Link href="/auth/login" passHref>
-              <Button className="w-full">Ir para o login</Button>
-            </Link>
-          </div>
-        </SuccessFeedback>
+        <div className="auth-layout w-full max-w-md">
+          <SuccessFeedback
+            title="Email verificado com sucesso"
+            subtitle="Seu email foi verificado com sucesso, agora você pode entrar em sua conta."
+          >
+            <div className="flex w-full flex-col gap-2 pt-4">
+              <Link href="/auth/login" passHref>
+                <Button className="w-full">Ir para o login</Button>
+              </Link>
+            </div>
+          </SuccessFeedback>
+        </div>
       )}
       {!isSuccess && (
         <AuthFormLayout
