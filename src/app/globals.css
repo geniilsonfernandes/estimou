@@ -69,6 +69,7 @@ body {
     width: 8px; /* Largura da barra de rolagem */
     height: 8px; /* Altura da scrollbar horizontal */
     opacity: 1;
+    background-color: transparent;
   }
 
   ::-webkit-scrollbar-track {
