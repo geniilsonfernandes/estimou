@@ -1,6 +1,6 @@
 import { Navigation } from '@/components/Home/Navigation'
 import { Button } from '@/components/ui/button'
-import { ChartArea, Rocket, Sparkles, Star, Video } from 'lucide-react'
+import { ChartArea, Lock, Rocket, Sparkles, Star, Video } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -16,15 +16,19 @@ export default function Home() {
     <>
       <div className="relative bg-white py-4 [--background-width:308.4%] [background:radial-gradient(var(--background-width)_100%_at_50%_0%,_#FFF_6.32%,_#E0F0FF_29.28%,_#4235ff21_68.68%,_#FFF_100%)] lg:[--background-width:198.96%]">
         <Navigation />
-        <div className="container">
-          <div className="relative z-20 mx-auto flex flex-col items-center justify-center px-8 py-32">
+
+        <section className="container relative">
+          <div className="ml-42 absolute -top-36 left-48 h-screen w-[1px] bg-brand-300/50"></div>
+          <div className="mr-42 absolute -top-36 right-48 h-screen w-[1px] bg-brand-300/50"></div>
+
+          <div className="relative z-20 mx-auto flex flex-col items-center justify-center px-8 py-28">
             <div className="flex justify-center">
-              <h1 className="inline-flex items-center justify-center gap-2 rounded-full border border-brand-400 bg-white p-2 px-4 text-sm font-bold text-brand shadow-md">
+              <h1 className="inline-flex items-center justify-center gap-2 rounded-full border border-brand-400 bg-white p-[6px] text-xs font-bold text-brand shadow-md">
                 <Sparkles size={16} />
                 Orçamentos inteligente!
               </h1>
             </div>
-            <h1 className="pt-4 text-center font-exo text-3xl font-bold text-gray-900">
+            <h1 className="pt-4 text-center font-exo text-4xl font-bold text-gray-900 sm:max-w-lg">
               Diga adeus aos orçamentos via WhatsApp e PDFs!
             </h1>
             <div className="my-6 h-[1px] w-80 bg-gradient-to-r from-brand-900/0 to-brand-300"></div>
@@ -56,10 +60,24 @@ export default function Home() {
               />
             </div>
           </div>
-        </div>
-        <div className="group container relative z-50 -mt-16">
-          <div className="relative z-10 my-4 overflow-clip transition-all duration-500 ease-out [mask-image:radial-gradient(155.14%_111.78%_at_50%_-11.78%,_#D9D9D9_30%,_rgba(115,_115,_115,_0.00)_100%)] group-hover:z-50 group-hover:translate-y-[-20px] group-hover:overflow-visible group-hover:shadow-lg md:block">
-            <div className="rounded-[10px] border border-brand-200/25 bg-brand-100/25 p-4">
+        </section>
+        <section className="group container relative z-50 -mt-16">
+          <div className="relative z-10 my-4 overflow-clip backdrop-blur-[1px] transition-all duration-500 ease-out [mask-image:radial-gradient(155.14%_111.78%_at_50%_-11.78%,_#D9D9D9_30%,_rgba(115,_115,_115,_0.00)_100%)] group-hover:z-50 group-hover:translate-y-[-20px] group-hover:overflow-visible group-hover:shadow-lg md:block">
+            <div className="rounded-[10px] border border-brand-200/45 bg-brand-200/30 p-2 backdrop-blur-sm">
+              <div className="relative mb-2 flex items-center justify-between gap-2 px-2">
+                <div className="flex items-center gap-2">
+                  <span className="block h-2 w-2 rounded-full bg-brand-300" />
+                  <span className="block h-2 w-2 rounded-full bg-brand-400" />
+                  <span className="block h-2 w-2 rounded-full bg-brand-500" />
+                </div>
+                <div className="flex max-w-52 flex-1 items-center gap-2 rounded-md border border-brand-200 bg-brand-100 p-2 text-xs text-brand-500">
+                  <Lock size={16} />
+                  www.estimou.com
+                </div>
+                <button className="flex items-center gap-2 text-xs text-brand-500">
+                  <Star size={16} />
+                </button>
+              </div>
               <Image
                 src="/hero-ui.png"
                 width={1200}
@@ -71,7 +89,10 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative z-50 -mt-20 rounded-2xl border border-gray-200/15 bg-white/50 p-4 py-8 backdrop-blur-sm transition-all duration-500 ease-out group-hover:-mt-60 sm:mx-8 sm:-mt-80 sm:px-8">
+          <div
+            aria-label="Principais Benefícios"
+            className="relative z-50 -mt-20 rounded-2xl border border-gray-200/15 bg-white/50 p-4 py-8 backdrop-blur-sm transition-all duration-500 ease-out group-hover:-mt-60 sm:mx-8 sm:-mt-80 sm:px-8"
+          >
             <div className="">
               <Star size={16} />
               <h1 className="text-md mt-4 flex items-center gap-2 font-semibold text-gray-800">
@@ -107,7 +128,7 @@ export default function Home() {
               })}
             </div>
           </div>
-        </div>
+        </section>
       </div>
       <div className="border-t border-t-gray-200">
         <div className="container py-8">...</div>

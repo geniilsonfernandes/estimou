@@ -14,13 +14,15 @@ export const Navigation = () => {
     <nav className="container sticky top-3 z-[99999] flex px-4">
       <div
         className={cn(
-          'flex w-full items-center justify-between rounded-2xl p-4 duration-500 ease-out',
+          'flex w-full items-center justify-between rounded-2xl bg-transparent p-4 duration-500 ease-out',
           {
             'bg-white/50 backdrop-blur-sm': Number(y) > 10,
           }
         )}
       >
-        <Logo />
+        <div className="flex-grow basis-0">
+          <Logo />
+        </div>
         <div className="text-md hidden gap-6 md:flex">
           <a
             href="#"
@@ -47,7 +49,10 @@ export const Navigation = () => {
             Planos e Preços
           </a>
         </div>
-        <div className="space-x-4">
+        <div className="flex flex-grow basis-0 justify-end space-x-4">
+          <Link href="/auth/login" passHref>
+            <Button variant="secondary">Log in</Button>
+          </Link>
           <Link href="/auth/register" passHref>
             <Button>
               <IconRocket />
