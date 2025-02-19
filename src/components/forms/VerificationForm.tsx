@@ -2,7 +2,7 @@
 
 import { useSearchParams } from 'next/navigation'
 
-import { verificationEmail } from '@/server/actions/verification-email'
+import { verificationEmail } from '@/app/actions/verification-email'
 import { useMutation } from '@tanstack/react-query'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'

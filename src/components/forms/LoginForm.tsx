@@ -1,5 +1,6 @@
 'use client'
 
+import { authenticateUser } from '@/app/actions/authenticate-user'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -11,11 +12,11 @@ import {
 } from '@/components/ui/form'
 import { Input, InputPassword } from '@/components/ui/input'
 import { useDisclosure } from '@/hooks/useDisclosure'
-import { authenticateUser } from '@/server/actions/authenticate-user'
 import { loginSchema } from '@/server/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { IconLogin2 } from '@tabler/icons-react'
 import { useMutation } from '@tanstack/react-query'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Snackbar } from '../Snackbar/Snackbar'
@@ -24,6 +25,7 @@ import { RecoveryForm } from './RecoveryForm'
 import { AuthFormLayout } from './auth/AuthFormLayout'
 
 export const LoginForm = () => {
+  const router = useRouter()
   const [opened, { open, close }] = useDisclosure()
 
   const {
@@ -45,7 +47,11 @@ export const LoginForm = () => {
   })
 
   const onSubmit = (data: z.infer<typeof loginSchema>) => {
-    loginMutation(data)
+    loginMutation(data, {
+      onSuccess() {
+        router.push('/home')
+      },
+    })
   }
 
   return (

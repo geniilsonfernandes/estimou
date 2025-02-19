@@ -3,7 +3,6 @@
 import { getUserByEmail } from '@/data/user'
 import { sendVerificationEmail } from '@/lib/mail'
 import { generateVerificationToken } from '@/lib/tokens'
-import { DEFAULT_LOGIN_REDIRECT } from '@/routes'
 import { loginSchema, type LoginData } from '@/server/schemas'
 import { signIn } from '@/utils/auth'
 import { AuthError } from 'next-auth'
@@ -34,13 +33,14 @@ export const authenticateUser = async (data: LoginData): Promise<ActionResponse>
       throw new CustomError('User not verified, check your email to verify your account!')
     }
 
-    await signIn('credentials', { email, password, redirectTo: DEFAULT_LOGIN_REDIRECT })
-
+    await signIn('credentials', { email, password, redirect: false  })
     return {
       success: true,
       message: 'Login successful',
     }
   } catch (error) {
+    console.log(error)
+
     if (error instanceof CustomError) {
       throw new Error(error.message)
     }

@@ -1,6 +1,6 @@
 'use client'
 
-import { newPassword } from '@/server/actions/new-password'
+import { newPassword } from '@/app/actions/new-password'
 import { CreateNewPasswordData, createNewPasswordSchema } from '@/server/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'

@@ -1,6 +1,6 @@
 'use client'
 
-import { recoveryPassword } from '@/server/actions/recovery-password'
+import { recoveryPassword } from '@/app/actions/recovery-password'
 import { RecoverPasswordData, recoverPasswordSchema } from '@/server/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
