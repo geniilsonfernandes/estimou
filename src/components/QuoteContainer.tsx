@@ -49,12 +49,12 @@ const QuoteContainer = () => {
       <Quote
         quote={estimouQuotes[0].text}
         author={estimouQuotes[0].author}
-        className="bottom-[24px] scale-[.90] opacity-30 transition-all duration-300 ease-out group-hover:bottom-[220px] group-hover:scale-[1] group-hover:opacity-100"
+        className="bottom-[24px] scale-[.90] opacity-30 transition-all duration-500 ease-out group-hover:bottom-[220px] group-hover:scale-[1] group-hover:opacity-100"
       />
       <Quote
         quote={estimouQuotes[1].text}
         author={estimouQuotes[1].author}
-        className="bottom-[12px] scale-[.95] opacity-50 transition-all duration-300 ease-out group-hover:bottom-[110px] group-hover:scale-[1] group-hover:opacity-100"
+        className="bottom-[12px] scale-[.95] opacity-50 transition-all duration-500 ease-out group-hover:bottom-[110px] group-hover:scale-[1] group-hover:opacity-100"
       />
       <Quote quote={estimouQuotes[2].text} author={estimouQuotes[2].author} className="bottom-0" />
     </div>
