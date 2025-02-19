@@ -14,6 +14,7 @@ export default {
         upDown: 'upDown 2s ease-in-out infinite',
         fadeinup: 'fade-in-up .3s ease-out  1',
       },
+
       keyframes: {
         'fade-in-up': {
           '0%': {
