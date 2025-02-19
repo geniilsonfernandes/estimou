@@ -11,17 +11,17 @@ export const Navigation = () => {
   const [{ y }] = useWindowScroll()
 
   return (
-    <nav className="fixed left-0 top-2 z-40 flex w-screen">
+    <nav className="container sticky top-3 z-[99999] flex px-4">
       <div
         className={cn(
-          'container left-0 top-2 flex w-screen items-center justify-between rounded-2xl p-2 transition-all duration-300',
+          'flex w-full items-center justify-between rounded-2xl p-4 duration-500 ease-out',
           {
-            'bg-white/50 p-4 shadow-md backdrop-blur-sm ease-in-out': Number(y) > 10,
+            'bg-white/50 backdrop-blur-sm': Number(y) > 10,
           }
         )}
       >
         <Logo />
-        <div className="text-md flex gap-6">
+        <div className="text-md hidden gap-6 md:flex">
           <a
             href="#"
             target="_blank"

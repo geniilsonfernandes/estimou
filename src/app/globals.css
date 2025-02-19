@@ -102,6 +102,15 @@ body {
 }
 
 @layer utilities {
+    .bg-radial-pattern {
+    background-image: radial-gradient(hsl(var(--foreground) / 20%) 1px, transparent 0);
+    background-size: 10px 10px;
+    background-position: 0 0, 10px 10px;
+    @apply bg-gray-100/50
+    
+
+  }
+
   .brand-gradient {
     @apply bg-gradient-to-br from-brand-500 to-brand-700;
   }
