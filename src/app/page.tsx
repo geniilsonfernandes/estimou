@@ -130,9 +130,31 @@ export default function Home() {
           </div>
         </section>
       </div>
-      <div className="border-t border-t-gray-200">
-        <div className="container py-8">...</div>
-      </div>
+      <section className="border-t border-t-gray-200">
+        <div className="container py-8">
+          <h1>Como Funciona</h1>
+        </div>
+      </section>
+      <section className="border-t border-t-gray-200">
+        <div className="container py-8">
+          <h1>Benefícios</h1>
+        </div>
+      </section>
+      <section className="border-t border-t-gray-200">
+        <div className="container py-8">
+          <h1>Planos e Preços</h1>
+        </div>
+      </section>
+      <section className="border-t border-t-gray-200">
+        <div className="container py-8">
+          <h1>FAQ</h1>
+        </div>
+      </section>
+      <section className="border-t border-t-gray-200">
+        <div className="container py-8">
+          <h1>FOOTER</h1>
+        </div>
+      </section>
     </>
   )
 }
