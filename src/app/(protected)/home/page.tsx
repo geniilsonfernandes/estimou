@@ -1,6 +1,5 @@
 import { Analytics } from '@/components/AnalyticsCard/Analytics'
 import { BudgetList } from '@/components/BudgetList/BudgetList'
-import { Notifications } from '@/components/Notifications/Notifications'
 import { Button } from '@/components/ui/button'
 import { UserInfo } from '@/components/UserInfo/UserInfo'
 import { auth } from '@/utils/auth'
@@ -36,23 +35,22 @@ export default async function HomePage() {
     <div className="flex flex-col md:flex-row">
       <div className="flex-1 space-y-4 p-8">
         <UserInfo session={session} />
-        <Notifications />
         <div className="flex flex-col items-center justify-between gap-4 lg:flex-row">
           <Button className="w-full bg-green-600 text-left">
             <IconScriptPlus strokeWidth={2} />
-            Budget
+            Orçamentos
           </Button>
           <Button className="w-full text-left">
             <IconUserPlus strokeWidth={2} />
-            Client
+            Clientes
           </Button>
           <Button className="w-full text-left">
             <IconTagPlus strokeWidth={2} />
-            Service
+            serviços
           </Button>
         </div>
         <BudgetList
-          budgets={Array.from({ length: 5 }).map((_, index) => ({
+          budgets={Array.from({ length: 2 }).map((_, index) => ({
             title: `Orcamento ${index + 1}`,
             date: '22/01/2023',
             status: 'Pendente',
@@ -60,7 +58,7 @@ export default async function HomePage() {
           }))}
         />
       </div>
-      <div className="min-h-screen flex-1 bg-gray-100 py-8">
+      <div className="flex-1 bg-gray-100 py-8">
         <Analytics />
       </div>
     </div>
