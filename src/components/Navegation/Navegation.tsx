@@ -15,7 +15,7 @@ export const Navegation = () => {
   const iconsProps = {
     size: 22,
     stroke: 1,
-    strokeWidth: 1.5,
+    strokeWidth: 1,
   } as IconProps
 
   const menus = [
@@ -41,13 +41,13 @@ export const Navegation = () => {
       role="navigation"
       data-collapsible="true"
       className={cn(
-        'sticky top-0 hidden h-screen w-12 flex-col justify-between bg-gray-100 py-12 text-black transition-all sm:flex lg:w-56 lg:pl-8'
+        'sticky top-0 hidden h-full w-12 flex-col justify-between py-12 text-black transition-all sm:flex lg:w-64 lg:p-4'
       )}
     >
       <div className="flex-1">
-        <Logo className="px-3" />
-
-        <div className="space-y-2 pt-8" aria-orientation="vertical" aria-label="Navigation">
+        <Logo className="" />
+        <div className="mb-8 mt-12 h-[1px] w-full bg-gray-200" />
+        <div className="space-y-2" aria-orientation="vertical" aria-label="Navigation">
           {menus.map((menu) => (
             <MenuLink
               aria-current={pathname === menu.path}
