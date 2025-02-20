@@ -6,29 +6,12 @@ import type { NextAuthConfig } from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
 import Google from 'next-auth/providers/google'
 
-
-
 export default {
   pages: {
     signIn: '/auth/login',
     error: '/auth/error',
   },
   events: {
-    async signIn({ user, account }) {
-      if (account?.provider !== 'credentials') {
-        return
-      }
-
-      if (account?.provider === 'credentials' && user.email) {
-        const userExists = await getUserByEmail(user.email)
-
-        if (!userExists?.emailVerified) {
-          throw new Error('E-mail não verificado')
-        }
-
-        return
-      }
-    },
     async linkAccount({ user }) {
       db.user.update({
         where: {

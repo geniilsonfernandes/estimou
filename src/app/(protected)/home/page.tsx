@@ -36,7 +36,6 @@ export default async function HomePage() {
     <div className="flex flex-col md:flex-row">
       <div className="flex-1 space-y-4 p-8">
         <UserInfo session={session} />
-        {JSON.stringify(session, null, 2)}
         <Notifications />
         <div className="flex flex-col items-center justify-between gap-4 lg:flex-row">
           <Button className="w-full bg-green-600 text-left">
