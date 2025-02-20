@@ -6,37 +6,34 @@ import Link from 'next/link'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { ClassValue } from 'clsx'
 
-const menuLinkVariants = cva(
-  'flex items-center gap-4 border-r-2 border-transparent p-3 text-sm capitalize transition-colors',
-  {
-    variants: {
-      variant: {
-        primary: 'bg-brand-500 text-white hover:bg-brand-600',
-        secondary: 'bg-gray-200 text-gray-900 hover:bg-gray-300',
-        outline: 'border-gray-300 text-gray-900 hover:bg-gray-100',
-        transparent: 'bg-transparent text-gray-500 hover:bg-gray-100',
-      },
-      hiddenLabel: {
-        true: 'justify-center lg:justify-start',
-        false: '',
-      },
-      size: {
-        sm: 'py-1 text-xs',
-        md: 'py-2 text-sm',
-        lg: 'py-3 text-base',
-      },
-      active: {
-        true: 'font-bold text-gray-900 border-gray-900',
-        false: '',
-      },
+const menuLinkVariants = cva('flex items-center gap-4 p-3  text-sm capitalize rounded-lg', {
+  variants: {
+    variant: {
+      primary: ' text-white',
+      secondary: 'bg-gray-200 text-gray-900',
+      outline: ' text-gray-900',
+      transparent: 'bg-transparent text-gray-600 hover:bg-white/50',
     },
-    defaultVariants: {
-      variant: 'primary',
-      size: 'md',
-      hiddenLabel: true,
+    hiddenLabel: {
+      true: 'justify-center lg:justify-start',
+      false: '',
     },
-  }
-)
+    size: {
+      sm: 'py-1 text-xs',
+      md: 'py-3 text-sm',
+      lg: 'py-4 text-base',
+    },
+    active: {
+      true: ' bg-gradient-to-r from-brand-400/15 to-brand-100/10 text-brand-500 [&_svg]:text-brand-600 hover:bg-white/10',
+      false: '',
+    },
+  },
+  defaultVariants: {
+    variant: 'primary',
+    size: 'md',
+    hiddenLabel: true,
+  },
+})
 
 interface MenuLinkProps
   extends React.AnchorHTMLAttributes<HTMLAnchorElement>,
