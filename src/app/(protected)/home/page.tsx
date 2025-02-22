@@ -36,8 +36,8 @@ type ButtonActionProps = {
 
 const ButtonAction: React.FC<ButtonActionProps> = ({ title, icon }) => {
   return (
-    <button className="flex w-full gap-2 rounded-md border border-gray-200 bg-gray-50 p-2 text-left text-sm text-gray-600 transition-all duration-500 ease-out hover:translate-y-1 md:flex-col md:gap-0">
-      <div className="flex h-8 w-8 items-center justify-center rounded-md bg-gray-200/50 text-gray-500">
+    <button className="bg-gray-/50 brand-gradient flex w-full gap-2 rounded-md border border-brand-200 p-2 text-left text-sm text-gray-200/90 transition-all duration-500 ease-out hover:translate-y-[1px] md:flex-col md:gap-0">
+      <div className="flex h-8 w-8 items-center justify-center rounded-md bg-white/10 text-gray-200">
         {icon}
       </div>
       <div className="mt-2 text-xs font-semibold">{title}</div>
@@ -48,10 +48,10 @@ const ButtonAction: React.FC<ButtonActionProps> = ({ title, icon }) => {
 export default async function HomePage() {
   const session = await auth()
   return (
-    <div className="flex flex-col gap-4 md:flex-row">
+    <div className="flex flex-col md:flex-row">
       <div className="flex-1 p-8 py-12">
         <UserInfo session={session} />
-        <div className="my-6 flex flex-col gap-2 rounded-md bg-gradient-to-b from-gray-100 to-transparent p-3 shadow-brand-100/30">
+        <div className="card my-6 flex flex-col gap-2">
           <div className="flex items-center justify-between text-gray-500">
             <h1 className="text-xs">Acesso rápido</h1>
             <Sparkles size={16} strokeWidth={1.5} />
