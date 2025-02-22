@@ -13,6 +13,7 @@ export default {
       animation: {
         upDown: 'upDown 2s ease-in-out infinite',
         fadeinup: 'fade-in-up .3s ease-out  1',
+        leftRight: 'leftRight .5s ease-out 1',
       },
 
       keyframes: {
@@ -32,6 +33,10 @@ export default {
           '50%': { transform: 'translateY(-5px)', opacity: '.5' },
           '75%': { transform: 'translateY(5px)', opacity: '1' },
           '100%': { transform: 'translateY(-5px)', opacity: '.5' },
+        },
+        leftRight: {
+          '0%': { transform: 'translateX(-15px)', opacity: '.5' },
+          '100%': { transform: 'translateX(0px)', opacity: '1' },
         },
       },
       fontFamily: {

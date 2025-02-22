@@ -7,14 +7,14 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { ClassValue } from 'clsx'
 
 const menuLinkVariants = cva(
-  'flex items-center gap-4 hover:gap-[14px] transition-all px-3 text-sm font-normal capitalize rounded-xl',
+  'flex items-center gap-4 hover:gap-[14px] transition-all px-3 text-sm font-normal capitalize rounded-lg',
   {
     variants: {
       variant: {
         primary: ' text-white',
         secondary: 'bg-gray-200 text-gray-900',
         outline: ' text-gray-900',
-        transparent: 'bg-transparent text-gray-400 hover:bg-white/50',
+        transparent: 'bg-transparent text-gray-500 hover:bg-white/50',
       },
       hiddenLabel: {
         true: 'justify-center lg:justify-start',
@@ -26,7 +26,7 @@ const menuLinkVariants = cva(
         lg: 'py-4 text-base',
       },
       active: {
-        true: 'text-gray-500 [&_svg]:text-brand-500 bg-gray-200/70 hover:bg-gray-400/20 ',
+        true: 'text-brand-500/90  bg-brand-200/30 hover:bg-brand/15 ',
         false: '',
       },
     },

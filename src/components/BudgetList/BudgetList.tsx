@@ -14,9 +14,9 @@ export const BudgetList: React.FC<BudgetListProps> = ({ budgets }) => {
   ]
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 rounded-md bg-gradient-to-b from-gray-100 to-transparent p-3 shadow-brand-100/30">
       <div className="flex items-center justify-between">
-        <span className="text-sm text-gray-800">Orcamentos</span>
+        <span className="text-xs text-gray-500">Orcamentos recentes</span>
         <Select>
           <SelectTrigger className="w-[100px]">
             <SelectValue placeholder="Status" className="text-xs" />

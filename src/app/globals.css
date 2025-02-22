@@ -97,7 +97,7 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-gradient-to-tr from-brand-50 to-gray-100 ;
+    @apply bg-gradient-to-tr from-gray-50 to-gray-100 ;
   }
 }
 
