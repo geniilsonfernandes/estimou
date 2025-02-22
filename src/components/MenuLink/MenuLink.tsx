@@ -7,7 +7,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { ClassValue } from 'clsx'
 
 const menuLinkVariants = cva(
-  'flex items-center gap-4 hover:gap-[14px] transition-all px-3 text-sm font-normal capitalize rounded-lg',
+  'flex items-center gap-4 hover:gap-[14px] transition-all px-3 text-sm font-normal capitalize rounded-xl',
   {
     variants: {
       variant: {
@@ -26,7 +26,7 @@ const menuLinkVariants = cva(
         lg: 'py-4 text-base',
       },
       active: {
-        true: 'text-brand-500  bg-brand/10 hover:bg-brand/15 ',
+        true: 'text-gray-500 [&_svg]:text-brand-500 bg-gray-200/70 hover:bg-gray-400/20 ',
         false: '',
       },
     },
