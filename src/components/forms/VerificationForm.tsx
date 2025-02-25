@@ -6,7 +6,7 @@ import { verificationEmail } from '@/app/actions/verification-email'
 import { useMutation } from '@tanstack/react-query'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
-import { useCallback, useEffect } from 'react'
+import { Suspense, useCallback, useEffect } from 'react'
 import { Loader } from '../Loader/Loader'
 import { Snackbar } from '../Snackbar/Snackbar'
 import { SuccessFeedback } from '../SuccessFeedback/SuccessFeedback'
@@ -37,7 +37,7 @@ export const VerificationForm = () => {
   }, [onVerify])
 
   return (
-    <div>
+    <Suspense fallback={<Loader />}>
       {isSuccess && (
         <div className="auth-layout w-full max-w-md">
           <SuccessFeedback
@@ -88,6 +88,6 @@ export const VerificationForm = () => {
           </Link>
         </AuthFormLayout>
       )}
-    </div>
+    </Suspense>
   )
 }
