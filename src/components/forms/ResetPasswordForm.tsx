@@ -4,8 +4,10 @@ import { newPassword } from '@/app/actions/new-password'
 import { CreateNewPasswordData, createNewPasswordSchema } from '@/server/schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
+import { Loader } from 'lucide-react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
+import { Suspense } from 'react'
 import { useForm } from 'react-hook-form'
 import { SuccessFeedback } from '../SuccessFeedback/SuccessFeedback'
 import { Button } from '../ui/button'
@@ -13,7 +15,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { InputPassword } from '../ui/input'
 import { AuthFormLayout } from './auth/AuthFormLayout'
 
-export const ResetPasswordForm = () => {
+const Main = () => {
   const searchParams = useSearchParams()
   const token = searchParams.get('token')
 
@@ -107,5 +109,13 @@ export const ResetPasswordForm = () => {
         </AuthFormLayout>
       )}
     </>
+  )
+}
+
+export const ResetPasswordForm = () => {
+  return (
+    <Suspense fallback={<Loader />}>
+      <Main />
+    </Suspense>
   )
 }
