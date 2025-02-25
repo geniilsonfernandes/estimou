@@ -42,7 +42,7 @@ const Main = () => {
   }
 
   return (
-    <>
+    <Suspense fallback={<Loader />}>
       {isSuccess && (
         <div className="auth-layout">
           <SuccessFeedback
@@ -108,7 +108,7 @@ const Main = () => {
           </Form>
         </AuthFormLayout>
       )}
-    </>
+    </Suspense>
   )
 }
 
