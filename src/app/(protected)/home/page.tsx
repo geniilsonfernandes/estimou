@@ -11,7 +11,7 @@ const clientCompany: Company = {
   location: 'San Francisco, CA',
 }
 
-export const budgetItemsMock: BudgetItemProps[] = [
+const budgetItemsMock: BudgetItemProps[] = [
   {
     title: 'Website Redesign',
     date: '2025-02-20',
