@@ -5,7 +5,7 @@ import { QuickAction } from '@/components/QuickActions/QuickAction'
 import { UserInfo } from '@/components/UserInfo/UserInfo'
 import { auth } from '@/utils/auth'
 
-export const clientCompany: Company = {
+const clientCompany: Company = {
   name: 'TechNova Solutions',
   industry: 'Software Development',
   location: 'San Francisco, CA',
@@ -51,46 +51,6 @@ export const budgetItemsMock: BudgetItemProps[] = [
     amount: 3000.0,
     company: clientCompany,
     view: false,
-  },
-  {
-    title: 'Mobile App Development',
-    date: '2025-01-30',
-    status: 'In Progress',
-    amount: 7500.0,
-    company: clientCompany,
-    view: false,
-  },
-  {
-    title: 'Cybersecurity Audit',
-    date: '2025-01-25',
-    status: 'Completed',
-    amount: 5200.0,
-    company: clientCompany,
-    view: true,
-  },
-  {
-    title: 'E-commerce Platform',
-    date: '2025-01-20',
-    status: 'Pending',
-    amount: 12000.0,
-    company: clientCompany,
-    view: false,
-  },
-  {
-    title: 'Data Analytics Implementation',
-    date: '2025-01-15',
-    status: 'In Progress',
-    amount: 8600.0,
-    company: clientCompany,
-    view: true,
-  },
-  {
-    title: 'AI Integration',
-    date: '2025-01-10',
-    status: 'Completed',
-    amount: 15000.0,
-    company: clientCompany,
-    view: true,
   },
 ]
 
