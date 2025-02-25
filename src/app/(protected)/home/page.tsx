@@ -1,66 +1,109 @@
 import { Analytics } from '@/components/AnalyticsCard/Analytics'
+import { BudgetItemProps, Company } from '@/components/BudgetItem/BudgetItem'
 import { BudgetList } from '@/components/BudgetList/BudgetList'
-import { Notifications } from '@/components/Notifications/Notifications'
-import { Button } from '@/components/ui/button'
+import { QuickAction } from '@/components/QuickActions/QuickAction'
 import { UserInfo } from '@/components/UserInfo/UserInfo'
 import { auth } from '@/utils/auth'
-import { IconScriptPlus, IconTagPlus, IconUserPlus } from '@tabler/icons-react'
 
-import { forwardRef } from 'react'
-
-interface ButtonWithIconProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  label: string
-  icon?: React.ReactNode
+export const clientCompany: Company = {
+  name: 'TechNova Solutions',
+  industry: 'Software Development',
+  location: 'San Francisco, CA',
 }
 
-const ButtonWithIcon = forwardRef<HTMLButtonElement, ButtonWithIconProps>(
-  ({ label, icon, ...props }, ref) => {
-    return (
-      <button
-        ref={ref}
-        className="lg`:flex-col flex w-full items-center gap-2 rounded-md border border-gray-200 bg-gray-100 p-2 text-left text-xs font-normal text-gray-900"
-        {...props}
-      >
-        {icon && <span className="inline-flex rounded-lg border p-1 text-gray-900">{icon}</span>}
-        <span className="block max-w-[70px]">{label}</span>
-      </button>
-    )
-  }
-)
-
-ButtonWithIcon.displayName = 'ButtonWithIcon'
+export const budgetItemsMock: BudgetItemProps[] = [
+  {
+    title: 'Website Redesign',
+    date: '2025-02-20',
+    status: 'Pending',
+    amount: 2500.0,
+    company: clientCompany,
+    view: true,
+  },
+  {
+    title: 'Marketing Campaign',
+    date: '2025-02-18',
+    status: 'Completed',
+    amount: 4800.0,
+    company: clientCompany,
+    view: true,
+  },
+  {
+    title: 'Software Development',
+    date: '2025-02-15',
+    status: 'In Progress',
+    amount: 10000.0,
+    company: clientCompany,
+    view: true,
+  },
+  {
+    title: 'Cloud Hosting Services',
+    date: '2025-02-10',
+    status: 'Pending',
+    amount: 1200.0,
+    company: clientCompany,
+    view: false,
+  },
+  {
+    title: 'SEO Optimization',
+    date: '2025-02-05',
+    status: 'Completed',
+    amount: 3000.0,
+    company: clientCompany,
+    view: false,
+  },
+  {
+    title: 'Mobile App Development',
+    date: '2025-01-30',
+    status: 'In Progress',
+    amount: 7500.0,
+    company: clientCompany,
+    view: false,
+  },
+  {
+    title: 'Cybersecurity Audit',
+    date: '2025-01-25',
+    status: 'Completed',
+    amount: 5200.0,
+    company: clientCompany,
+    view: true,
+  },
+  {
+    title: 'E-commerce Platform',
+    date: '2025-01-20',
+    status: 'Pending',
+    amount: 12000.0,
+    company: clientCompany,
+    view: false,
+  },
+  {
+    title: 'Data Analytics Implementation',
+    date: '2025-01-15',
+    status: 'In Progress',
+    amount: 8600.0,
+    company: clientCompany,
+    view: true,
+  },
+  {
+    title: 'AI Integration',
+    date: '2025-01-10',
+    status: 'Completed',
+    amount: 15000.0,
+    company: clientCompany,
+    view: true,
+  },
+]
 
 export default async function HomePage() {
   const session = await auth()
   return (
     <div className="flex flex-col md:flex-row">
-      <div className="flex-1 space-y-4 p-8">
+      <div className="flex-1 animate-top-bottom p-8 py-12">
         <UserInfo session={session} />
-        <Notifications />
-        <div className="flex flex-col items-center justify-between gap-4 lg:flex-row">
-          <Button className="w-full bg-green-600 text-left">
-            <IconScriptPlus strokeWidth={2} />
-            Budget
-          </Button>
-          <Button className="w-full text-left">
-            <IconUserPlus strokeWidth={2} />
-            Client
-          </Button>
-          <Button className="w-full text-left">
-            <IconTagPlus strokeWidth={2} />
-            Service
-          </Button>
-        </div>
-        <BudgetList
-          budgets={Array.from({ length: 5 }).map((_, index) => ({
-            title: `Orcamento ${index + 1}`,
-            date: '22/01/2023',
-            status: 'Pendente',
-            amount: 'R$ 2.000,00',
-          }))}
-        />
+        <QuickAction />
+        <BudgetList budgets={budgetItemsMock} />
       </div>
-      <div className="min-h-screen flex-1 bg-gray-100 py-8">
+      <div className="sticky top-0 h-screen flex-1 py-4">
         <Analytics />
       </div>
     </div>

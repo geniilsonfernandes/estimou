@@ -6,9 +6,9 @@ export default function DashLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex">
+    <div className="flex min-h-screen">
       <Navegation />
-      <div className="min-h-screen flex-1 bg-white">{children}</div>
+      <div className="flex-1 overflow-hidden bg-white">{children}</div>
     </div>
   )
 }

@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
 import { Loader } from '../Loader/Loader'
 
 const buttonVariants = cva(
-  'inline-flex items-center hover:scale-[.995] justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 inset-shadow-sm inset-shadow-indigo-900',
+  'inline-flex items-center hover:scale-[.995] justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 inset-shadow-sm ',
   {
     variants: {
       variant: {
@@ -21,6 +21,7 @@ const buttonVariants = cva(
       },
       size: {
         default: 'h-10 px-4 py-2',
+        xs: 'h-7 px-2 text-xs',
         sm: 'h-9 rounded-md px-3',
         lg: 'h-11 rounded-md px-8',
         icon: 'h-10 w-10',

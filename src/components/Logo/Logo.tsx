@@ -1,7 +1,11 @@
 import { cn } from '@/lib/cn'
 import React from 'react'
 
-export const Logo: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ className, ...props }) => {
+type LogoProps = {
+  hiddenText?: boolean
+} & React.HTMLAttributes<HTMLDivElement>
+
+export const Logo: React.FC<LogoProps> = ({ className, hiddenText = false, ...props }) => {
   return (
     <div
       className={cn(
@@ -36,7 +40,7 @@ export const Logo: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ className
           </linearGradient>
         </defs>
       </svg>
-      Estimou
+      {!hiddenText && <span className="animate-leftRight duration-500 ease-in-out">Estimou</span>}
     </div>
   )
 }

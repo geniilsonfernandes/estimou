@@ -13,6 +13,12 @@ export default {
       animation: {
         upDown: 'upDown 2s ease-in-out infinite',
         fadeinup: 'fade-in-up .3s ease-out  1',
+        leftRight: 'leftRight .5s ease-out 1',
+        animatefade: 'animate-fade-down .3s ease-out 1',
+        'fade-in': 'fade-in .3s ease-out 1',
+        'top-bottom': 'top-bottom .3s ease-out 1',
+        'bottom-top': 'bottom-top .3s ease-out 1',
+        'right-left': 'right-left .3s ease-out 1',
       },
 
       keyframes: {
@@ -26,12 +32,36 @@ export default {
             transform: 'translate3d(0, 0, 0)',
           },
         },
+        ' animate-fade-down': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
         upDown: {
           '0%': { transform: 'translateY(-5px)', opacity: '.5' },
           '25%': { transform: 'translateY(5px)', opacity: '1' },
           '50%': { transform: 'translateY(-5px)', opacity: '.5' },
           '75%': { transform: 'translateY(5px)', opacity: '1' },
           '100%': { transform: 'translateY(-5px)', opacity: '.5' },
+        },
+        leftRight: {
+          '0%': { transform: 'translateX(-15px)', opacity: '.5' },
+          '100%': { transform: 'translateX(0px)', opacity: '1' },
+        },
+        'right-left': {
+          '0%': { transform: 'translateX(15px)', opacity: '.5' },
+          '100%': { transform: 'translateX(0px)', opacity: '1' },
+        },
+        'top-bottom': {
+          '0%': { transform: 'translateY(-15px)', opacity: '0' },
+          '100%': { transform: 'translateY(0px)', opacity: '1' },
+        },
+        'bottom-top': {
+          '0%': { transform: 'translateY(15px)', opacity: '.5' },
+          '100%': { transform: 'translateY(0px)', opacity: '1' },
+        },
+        'fade-in': {
+          '0%': { opacity: '.5' },
+          '100%': { opacity: '1' },
         },
       },
       fontFamily: {
