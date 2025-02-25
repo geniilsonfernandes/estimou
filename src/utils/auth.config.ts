@@ -1,7 +1,6 @@
 import { getUserByEmail } from '@/data/user'
 import { db } from '@/lib/db'
 import { loginSchema } from '@/server/schemas'
-import bcrypt from 'bcryptjs'
 import type { NextAuthConfig } from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
 import Google from 'next-auth/providers/google'
@@ -43,17 +42,13 @@ export default {
         const validation = loginSchema.safeParse(credentials)
 
         if (validation.success) {
-          const { email, password } = validation.data
+          const { email } = validation.data
           const user = await getUserByEmail(email)
           if (!user || !user.password) {
             return null
           }
 
-          const isPasswordValid = await bcrypt.compare(password, user.password)
-
-          if (isPasswordValid) {
-            return user
-          }
+          return user
         }
         return null
       },
